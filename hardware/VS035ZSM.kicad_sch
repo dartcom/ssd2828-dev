@@ -4293,7 +4293,7 @@
     (property "Value" "TPS65131TRGERQ1" (at 156.21 39.37 0)
       (effects (font (size 1.27 1.27)))
     )
-    (property "Footprint" "SamacSys_Parts:QFN50P400X400X100-25N-D" (at 167.64 142.545 0)
+    (property "Footprint" "Package_DFN_QFN:VQFN-24-1EP_4x4mm_P0.5mm_EP2.45x2.45mm" (at 167.64 142.545 0)
       (effects (font (size 1.27 1.27)) (justify left top) hide)
     )
     (property "Datasheet" "http://www.ti.com/lit/gpn/tps65131-q1" (at 167.64 242.545 0)
