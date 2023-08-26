@@ -118,7 +118,7 @@
         "min_hole_to_hole": 0.5,
         "min_microvia_diameter": 0.19999999999999998,
         "min_microvia_drill": 0.09999999999999999,
-        "min_resolved_spokes": 2,
+        "min_resolved_spokes": 1,
         "min_silk_clearance": 0.0,
         "min_text_height": 1.0,
         "min_text_thickness": 0.15,
@@ -204,10 +204,6 @@
         {
           "diameter": 0.0,
           "drill": 0.0
-        },
-        {
-          "diameter": 0.3,
-          "drill": 0.45
         }
       ],
       "zones_allow_external_fillets": false
@@ -786,6 +782,46 @@
       {
         "netclass": "power",
         "pattern": "/VS035ZSM/VSN"
+      },
+      {
+        "netclass": "100Ω_Diff",
+        "pattern": "/debug/MIPI_CLK_P"
+      },
+      {
+        "netclass": "100Ω_Diff",
+        "pattern": "/debug/MIPI_CLK_N"
+      },
+      {
+        "netclass": "100Ω_Diff",
+        "pattern": "/debug/MIPI_DATA0_P"
+      },
+      {
+        "netclass": "100Ω_Diff",
+        "pattern": "/debug/MIPI_DATA0_N"
+      },
+      {
+        "netclass": "100Ω_Diff",
+        "pattern": "/debug/MIPI_DATA1_P"
+      },
+      {
+        "netclass": "100Ω_Diff",
+        "pattern": "/debug/MIPI_DATA1_N"
+      },
+      {
+        "netclass": "100Ω_Diff",
+        "pattern": "/debug/MIPI_DATA2_P"
+      },
+      {
+        "netclass": "100Ω_Diff",
+        "pattern": "/debug/MIPI_DATA2_N"
+      },
+      {
+        "netclass": "100Ω_Diff",
+        "pattern": "/debug/MIPI_DATA3_P"
+      },
+      {
+        "netclass": "100Ω_Diff",
+        "pattern": "/debug/MIPI_DATA3_N"
       }
     ]
   },
@@ -860,6 +896,10 @@
     [
       "d0befddb-c525-47aa-a36b-f999bfb6acb2",
       "LH154Q01"
+    ],
+    [
+      "d447bd0b-01e9-4cd7-8213-bcef244ac24b",
+      "debug"
     ]
   ],
   "text_variables": {}
