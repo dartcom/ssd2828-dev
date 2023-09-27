@@ -1,4 +1,4 @@
-21618328978047648
+21626827203875103
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -2421,6 +2421,13 @@ speaker CUI
 0
 2
 2
+C2797218
+FPC-SMD_KH-FG0.5-H2.0-34PIN
+
+
+0
+36
+36
 Calibration_Scale
 Gauge_10mm_Type1_CopperTop
 Gauge, Massstab, 10mm, CopperTop, Type 1,
@@ -6460,6 +6467,13 @@ tag connect programming header pogo pins
 0
 14
 14
+Connector
+solder pad
+
+
+0
+2
+2
 Connector_AMASS
 AMASS_MR30PW-FB_1x03_P3.50mm_Horizontal
 Connector XT30 Horizontal PCB Female, https://www.tme.eu/en/Document/5e47640ba39fa492dbd4c0f4c8ae7b93/MR30PW%20SPEC.pdf
@@ -6551,6 +6565,13 @@ RC Connector XT60
 0
 4
 2
+Connector_AMASS
+MR30PW-FB
+
+
+0
+5
+3
 Connector_Amphenol
 Amphenol_M8S-03PMMR-SF8001
 M8 Male connector for panel, 90° PCB mount (https://www.amphenolltw.com/2012download/2D%20PDF/03_M%20Series%20Sensor%20Connectors/M8S-XXPMMR-SF8001.pdf)
@@ -83076,6 +83097,13 @@ Integrated Circuit
 25
 25
 SamacSys_Parts
+S8411-45R_1
+S8411-45R_1
+Connector
+0
+2
+2
+SamacSys_Parts
 SOP254P650X170-4N
 TO-269AA
 Diode
@@ -83117,6 +83145,13 @@ Triac
 0
 3
 3
+SamacSys_Parts
+XT30PWF
+XT30PW-F-2
+Connector
+0
+4
+2
 Sensor
 Aosong_DHT11_5.5x12.0_P2.54mm
 Temperature and humidity module, http://akizukidenshi.com/download/ds/aosong/DHT11.pdf

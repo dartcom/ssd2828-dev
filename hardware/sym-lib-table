@@ -1,0 +1,5 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "SamacSys_Parts")(type "KiCad")(uri "${KIPRJMOD}/libs/SamacSys/SamacSys_Parts.kicad_sym")(options "")(descr ""))
+  (lib (name "ssd2828")(type "KiCad")(uri "${KIPRJMOD}/libs/ssd2828/ssd2828.kicad_sym")(options "")(descr ""))
+)

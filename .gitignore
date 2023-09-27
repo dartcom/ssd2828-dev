@@ -1,0 +1,8 @@
+#kicad files
+# export files for BOM
+*.csv
+*.tsv
+*.xml
+# backup files
+ *.bak
+/hardware/ssd2828_board-backups/

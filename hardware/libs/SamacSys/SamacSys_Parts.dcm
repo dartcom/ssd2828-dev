@@ -1,0 +1,135 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP NE555DR
+D Single Precision Timer
+K
+F http://www.ti.com/lit/ds/symlink/ne555.pdf
+$ENDCMP
+#
+$CMP FH35C-25S-0.3SHW_50_
+D HIROSE(HRS) - FH35C-25S-0.3SHW(50) - CONNECTOR, FPC, RCPT, 25POS, 1ROW
+K
+F https://www.hirose.com/product/en/products/FH35C/FH35C-25S-0.3SHW%2850%29/
+$ENDCMP
+#
+$CMP 245863050104829+
+D Board to Board & Mezzanine Connectors RECPT 0.35mm Pitch 50pos 8.0mm Height
+K
+F https://www.mouser.co.uk/datasheet/2/909/5863-1602212.pdf
+$ENDCMP
+#
+$CMP ADC081S021CIMF_NOPB
+D Single Channel, 50 to 200 ksps, 8-Bit A/D Converter
+K
+F http://www.ti.com/lit/gpn/adc081s021
+$ENDCMP
+#
+$CMP ES1D-13-F
+D Diodes Inc ES1D-13-F SMT Switching Diode, 200V 1A, 2-Pin DO-214AC
+K
+F https://www.diodes.com/assets/Datasheets/ds14001.pdf
+$ENDCMP
+#
+$CMP 105162-0001
+D Memory Card Connectors 1.45H MICRO SD HEADER WITH D/C PIN
+K
+F http://www.molex.com/webdocs/datasheets/pdf/en-us//1051620001_MEMORY_CARD_SOCKET.pdf
+$ENDCMP
+#
+$CMP TLV62568DBVR
+D 2.5V-5.5V input, 1A high efficiency step-down buck converter in SOT23 and SOT563 package
+K
+F http://www.ti.com/lit/gpn/tlv62568
+$ENDCMP
+#
+$CMP BTA24-600BWRG
+D TRIAC BTA24-600BWRG, 600V, Gate Trigger 1.3V 50mA, TO-220AB Isolated 3-Pin
+K
+F http://www.st.com/web/en/resource/technical/document/datasheet/CD00002264.pdf
+$ENDCMP
+#
+$CMP 503548-1220
+D MOLEX - 503548-1220 - PCB STACKING CONNECTOR, RECEPTACLE, 12 POSITION, 0.4MM
+K
+F https://componentsearchengine.com/Datasheets/1/503548-1220.pdf
+$ENDCMP
+#
+$CMP S380
+D Diode Rectifier Bridge Single 800V 0.8A Automotive 4-Pin Mini-DIP SMD T/R
+K
+F https://www.arrow.com/en/products/s380/diotec-semiconductor-ag
+$ENDCMP
+#
+$CMP ASPI-0312FS-100M-T2
+D 10 H Shielded Drum Core, Wirewound Inductor 630 mA 290mOhm Nonstandard
+K
+F https://componentsearchengine.com/Datasheets/1/ASPI-0312FS-100M-T2.pdf
+$ENDCMP
+#
+$CMP NRS2012T4R7MGJ
+D FIXED IND 4.7UH 910MA 241 MOHM
+K
+F https://ds.yuden.co.jp/TYCOMPAS/ut/download?pn=NRH2412T4R7MNGH++&fileType=CA
+$ENDCMP
+#
+$CMP ASPI-0628-4R7M-T1
+D Low Profile Wirewound Inductor. 4.7uh, 20%, 31mohm. 2.7a, 3.0a, 6.0 x 6.0 x 2.8mm, Smd, t&r, 1k/Reel
+K
+F https://componentsearchengine.com/Datasheets/1/ASPI-0628-4R7M-T1.pdf
+$ENDCMP
+#
+$CMP NRH2410T2R2MN
+D Inductor Power Shielded Wirewound 2.2uH 20% 100KHz Ferrite 0.97A 0.18Ohm DCR T/R
+K
+F 
+$ENDCMP
+#
+$CMP MIC5501-3.0YM5-TR
+D MIC5501-3.0YM5-TR, SOT23-5
+K
+F http://www.microchip.com/mymicrochip/filehandler.aspx?ddocname=en580292
+$ENDCMP
+#
+$CMP TPS65131TRGERQ1
+D Automotive Catalog Split-Rail Converter with Dual Positive and Negative Outputs (300mA typ)
+K
+F http://www.ti.com/lit/gpn/tps65131-q1
+$ENDCMP
+#
+$CMP CUS10S40,H3F
+D Schottky Diodes & Rectifiers Single High-speed switching
+K
+F https://toshiba.semicon-storage.com/ap-en/semiconductor/product/diodes/detail.CUS10S40.html
+$ENDCMP
+#
+$CMP AD5227BUJZ10-RL7
+D AD5227BUJZ10-RL7, Digital Potentiometer 10k 64-Position Linear Serial-3 Wire 8 Pin, TSOT
+K
+F 
+$ENDCMP
+#
+$CMP MP2315GJ-Z
+D Switching Voltage Regulators 3A 24V 500kHz Sync buck
+K
+F https://componentsearchengine.com/Datasheets/1/MP2315GJ-Z.pdf
+$ENDCMP
+#
+$CMP INA180A3IDBVR
+D 26-V, low-/high-side, voltage output current sense amplifier
+K
+F http://www.ti.com/lit/gpn/INA180
+$ENDCMP
+#
+$CMP XT30PW-F
+D Socket; DC supply; XT30; female; PIN:2; on PCBs; THT; Colour: yellow
+K
+F https://www.tme.eu/Document/ce4077e36b79046da520ca73227e15de/XT30PW%20SPEC.pdf
+$ENDCMP
+#
+$CMP S8411-45R
+D Coin Cell Battery Retainer, Horizontal SMT, for CR1220 Coin Cell Batteries
+K
+F https://cdn.harwin.com/pdfs/S8411R.pdf
+$ENDCMP
+#
+#End Doc Library
