@@ -5,4 +5,4 @@
 *.xml
 # backup files
  *.bak
-/hardware/ssd2828_board-backups/
+/hardware/ssd2828_board-backups/*
