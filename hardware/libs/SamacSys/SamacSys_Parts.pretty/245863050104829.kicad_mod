@@ -99,7 +99,7 @@
   (pad "MP4" smd rect (at 4.9 -0.935 90) (size 0.35 0.8) (layers "F.Cu" "F.Paste" "F.Mask") (tstamp 0b8227f6-b3dd-4781-b8a8-7d0e5e764d03))
   (pad "MP5" smd rect (at 4.9 0.935 90) (size 0.35 0.8) (layers "F.Cu" "F.Paste" "F.Mask") (tstamp 66f395d4-30a6-43ad-b9d6-44f5345e394a))
   (pad "MP6" smd rect (at -4.9 0.935 90) (size 0.35 0.8) (layers "F.Cu" "F.Paste" "F.Mask") (tstamp b27797bb-9dea-4d77-ae02-e108aa07da38))
-  (model "${KIPRJMOD}/libs/SamacSys/SamacSys_Parts.3dshapes/205863050104.igs"
+  (model "${KIPRJMOD}/libs/SamacSys/SamacSys_Parts.3dshapes/205863050104_new.iges"
     (offset (xyz -4.2 0 0))
     (scale (xyz 1 1 1))
     (rotate (xyz 0 0 90))

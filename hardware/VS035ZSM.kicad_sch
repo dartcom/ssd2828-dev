@@ -3143,7 +3143,7 @@
     (property "Value" "4r99" (at 162.56 143.51 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Footprint" "Resistor_SMD:R_0603_1608Metric" (at 167.132 142.24 90)
+    (property "Footprint" "Resistor_SMD:R_1210_3225Metric" (at 167.132 142.24 90)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (at 168.91 142.24 0)

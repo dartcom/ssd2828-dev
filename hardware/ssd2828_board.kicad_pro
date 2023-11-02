@@ -505,7 +505,7 @@
         "microvia_diameter": 0.3,
         "microvia_drill": 0.1,
         "name": "power",
-        "pcb_color": "rgba(0, 0, 0, 0.000)",
+        "pcb_color": "rgb(0, 194, 194)",
         "schematic_color": "rgba(0, 0, 0, 0.000)",
         "track_width": 0.35,
         "via_diameter": 0.45,
@@ -672,7 +672,7 @@
         "pattern": "/SSD2828/MIPI_CLK_N"
       },
       {
-        "netclass": "power",
+        "netclass": "Default",
         "pattern": "GND"
       },
       {
