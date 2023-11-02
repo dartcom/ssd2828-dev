@@ -2,4 +2,7 @@
   (version 7)
   (lib (name "SamacSys_Parts")(type "KiCad")(uri "${KIPRJMOD}/libs/SamacSys/SamacSys_Parts.pretty")(options "")(descr ""))
   (lib (name "C2797218")(type "KiCad")(uri "${KIPRJMOD}/libs/C2797218/C2797218.pretty")(options "")(descr ""))
+  (lib (name "C602016")(type "KiCad")(uri "${KIPRJMOD}/libs/C602016/C602016.pretty")(options "")(descr ""))
+  (lib (name "C98354")(type "KiCad")(uri "${KIPRJMOD}/libs/C98354/C98354.pretty")(options "")(descr ""))
+  (lib (name "mylib")(type "KiCad")(uri "${KIPRJMOD}/libs/mylib/mylib.pretty")(options "")(descr ""))
 )
