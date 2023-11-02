@@ -4423,6 +4423,31 @@
     )
   )
 
+  (symbol (lib_id "Connector:TestPoint_Flag") (at 156.21 66.675 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no)
+    (uuid 5348d7c5-725d-4651-8f61-49355541d2b4)
+    (property "Reference" "TP42" (at 167.64 64.77 0)
+      (effects (font (size 1.27 1.27)) (justify right))
+    )
+    (property "Value" " " (at 154.305 63.373 0)
+      (effects (font (size 1.27 1.27)) (justify right))
+    )
+    (property "Footprint" "TestPoint:TestPoint_Pad_1.0x1.0mm" (at 161.29 66.675 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "~" (at 161.29 66.675 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid fba69fac-7d1a-4157-8f0f-a1f7a70b9bd5))
+    (instances
+      (project "ssd2828_board"
+        (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/eadf4466-e824-4ab1-a46a-9025d68137a1"
+          (reference "TP42") (unit 1)
+        )
+      )
+    )
+  )
+
   (symbol (lib_id "Jumper:SolderJumper_3_Open") (at 29.845 185.42 270) (mirror x) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 53536e30-40aa-4329-9170-0e6aed8ff612)
