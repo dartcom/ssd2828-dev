@@ -33,3 +33,8 @@ fp-info-cache
 # Exported BOM files
 *.xml
 *.csv
+
+.vscode/
+software/build/*.o
+software/build/*.bin
+software/build/*.elf
