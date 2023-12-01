@@ -28,7 +28,7 @@ CFLAGS += -mthumb
 CFLAGS += -mfpu=$(FPU)
 CFLAGS += -mfloat-abi=hard
 CFLAGS += -Wall
-CFLAGS += -g
+CFLAGS += -g3 -gdwarf-2
 CFLAGS += -fmessage-length=0
 CFLAGS += -specs=nosys.specs
 
@@ -44,8 +44,6 @@ LFLAGS += -T$(LSCRIPT)
 LFLAGS += -lc  
 LFLAGS += -lm
 LFLAGS += -lnosys 
-
-
 
 
 
@@ -100,4 +98,4 @@ flash_cmsis_dap: $(BUILD_DIR)/$(TARGET).elf
 	openocd -f interface/cmsis-dap.cfg -f board/atmel_sam3x_ek.cfg -c "program $< verify reset exit"
 
 flash_stlink: $(BUILD_DIR)/$(TARGET).elf
-	openocd -f interface/cmsis-dap.cfg -f board/atmel_sam3x_ek.cfg -c "program $< verify reset exit"
+	openocd -f interface/stlink.cfg -f target/stm32f4x.cfg -c "program $(BUILD_DIR)/$(TARGET).elf verify reset exit"
