@@ -34,7 +34,6 @@ fp-info-cache
 *.xml
 *.csv
 
-.vscode/
 software/build/*.o
 software/build/*.bin
 software/build/*.elf
