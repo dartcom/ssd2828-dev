@@ -265,6 +265,9 @@ void SystemCoreClockUpdate(void)
   SystemCoreClock >>= tmp;
 }
 
+
+
+
 #if defined (DATA_IN_ExtSRAM) && defined (DATA_IN_ExtSDRAM)
 #if defined(STM32F427xx) || defined(STM32F437xx) || defined(STM32F429xx) || defined(STM32F439xx)\
  || defined(STM32F469xx) || defined(STM32F479xx)
