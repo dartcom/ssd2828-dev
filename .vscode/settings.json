@@ -5,5 +5,6 @@
         "core_cm4.h": "c",
         "cmsis_compiler.h": "c",
         "stdint.h": "c"
-    }
+    },
+    "cortex-debug.variableUseNaturalFormat": false
 }

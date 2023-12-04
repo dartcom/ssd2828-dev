@@ -58,7 +58,7 @@ int main(){
     delay_ms(100);
     ssd2828_init();
 
-    i = ssd2828_get_id();
+   
 
     while(1){
         GPIOC->ODR ^= GPIO_ODR_OD13;
