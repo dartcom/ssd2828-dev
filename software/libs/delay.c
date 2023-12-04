@@ -4,14 +4,16 @@
 volatile uint64_t ms_ticks;
 volatile uint64_t us_ticks;
 
-void delay_ms(uint32_t delay){
-    
+void delay_ms(uint32_t delay_ms){
+    ms_ticks = 0;
+    while (delay_ms > ms_ticks){
+        __NOP();
+    }
 }
 
-void delay_us(uint32_t delay){
-    uint64_t start;
-    start = us_ticks;
-    while ((us_ticks + start) < (us_ticks + delay)){
+void delay_us(uint32_t delay_us){
+    us_ticks = 0;
+    while (delay_us > us_ticks){
         __NOP();
     }
 }
@@ -30,5 +32,10 @@ void delay_init(){
 
 void SysTick_Handler(){
     us_ticks++;
-    GPIOC->ODR ^= GPIO_ODR_OD13;
+    if((us_ticks == 1000)){
+        ms_ticks++;
+        
+        us_ticks = 0;
+    }
+    
 }
