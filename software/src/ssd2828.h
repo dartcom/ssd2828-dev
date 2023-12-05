@@ -16,30 +16,30 @@
 #define DIR_REG     0xB0
 
 #define VICR1_REG   0xB1
-    #define VICR1_VSA_POS   8U
-    #define VICR1_VSA_MSK   0xFF00
-    #define VICR1_HSA_POS   0U
-    #define VICR1_HSA_MSK   0x00FF
+    #define VICR1_VSA_POS       8U
+    #define VICR1_VSA_MSK       0xFF00
+    #define VICR1_HSA_POS       0U
+    #define VICR1_HSA_MSK       0x00FF
 
 #define VICR2_REG   0xB2
-    #define VICR2_VBP_POS   8U
-    #define VICR2_VBP_MSK   0xFF00
-    #define VICR2_HBP_POS   0U
-    #define VICR2_HBP_POS   0x00FF
+    #define VICR2_VBP_POS       8U
+    #define VICR2_VBP_MSK       0xFF00
+    #define VICR2_HBP_POS       0U
+    #define VICR2_HBP_POS       0x00FF
 
 #define VICR3_REG   0xB3
-    #define VICR3_VFP_POS   8U
-    #define VICR3_VFP_MSK   0xFF00
-    #define VICR3_HFP_POS   0U
-    #define VICR3_HBFP_POS   0x00FF
+    #define VICR3_VFP_POS       8U
+    #define VICR3_VFP_MSK       0xFF00
+    #define VICR3_HFP_POS       0U
+    #define VICR3_HBFP_POS      0x00FF
 
 #define VICR4_REG   0xB4
-    #define VICR4_HACT_POS   0U
-    #define VICR4_HACT_MSK   0xFFFF
+    #define VICR4_HACT_POS      0U
+    #define VICR4_HACT_MSK      0xFFFF
 
 #define VICR5_REG   0xB5
-    #define VICR5_VACT_POS   0U
-    #define VICR5_VACT_MSK   0xFFFF
+    #define VICR5_VACT_POS      0U
+    #define VICR5_VACT_MSK      0xFFFF
 
 #define VICR6_REG   0xB6
     #define VICR6_VS_P_POS      15U
@@ -55,7 +55,7 @@
     #define VICR6_NVD_POS       6U
     #define VICR6_NVD_MSK       0x0040
     #define VICR6_BLLP_POS      5U
-    #define VICR6_BLLP_MSK      0x0040
+    #define VICR6_BLLP_MSK      0x0020
     #define VICR6_VCS_POS       4U
     #define VICR6_VCS_MSK       0x0010
     #define VICR6_VM_POS        2U
@@ -67,41 +67,106 @@
     #define CFGR_TXD_POS        11U
     #define CFGR_TXD_MSK        0x0800
     #define CFGR_LPE_POS        10U
-    #define CFGR_LPE_MSK        0x0800
+    #define CFGR_LPE_MSK        0x0400
     #define CFGR_EOT_POS        9U
-    #define CFGR_EOT_MSK        0x0800
+    #define CFGR_EOT_MSK        0x0200
     #define CFGR_ECD_POS        8U
-    #define CFGR_ECD_MSK        0x0800
+    #define CFGR_ECD_MSK        0x0100
     #define CFGR_REN_POS        7U
-    #define CFGR_REN_MSK        0x0800
+    #define CFGR_REN_MSK        0x0080
     #define CFGR_DCS_POS        6U
-    #define CFGR_DCS_MSK        0x0800
-    #define CFGR_TXD_POS        5U
-    #define CFGR_TXD_MSK        0x0800
-    #define CFGR_TXD_POS        4U
-    #define CFGR_TXD_MSK        0x0800
-    #define CFGR_TXD_POS        3U
-    #define CFGR_TXD_MSK        0x0800
-    #define CFGR_TXD_POS        2U
-    #define CFGR_TXD_MSK        0x0800
-    #define CFGR_TXD_POS        1U
-    #define CFGR_TXD_MSK        0x0800
-    #define CFGR_TXD_POS        0U
-    #define CFGR_TXD_MSK        0x0800
+    #define CFGR_DCS_MSK        0x0040
+    #define CFGR_CSS_POS        5U
+    #define CFGR_CSS_MSK        0x0020
+    #define CFGR_HCLK_POS       4U
+    #define CFGR_HCLK_MSK       0x0010
+    #define CFGR_VEN_POS        3U
+    #define CFGR_VEN_MSK        0x0008
+    #define CFGR_SLP_POS        2U
+    #define CFGR_SLP_MSK        0x0004
+    #define CFGR_CKE_POS        1U
+    #define CFGR_CKE_MSK        0x0002
+    #define CFGR_HS_POS         0U
+    #define CFGR_HS_MSK         0x0001
 
 #define VCR_REG     0xB8
+    #define VCR_VCM_POS         6U
+    #define VCR_VCM_MSK         0x00C0
+    #define VCR_VCE_POS         4U
+    #define VCR_VCE_MSK         0x0030
+    #define VCR_VC2_POS         2U
+    #define VCR_VC2_MSK         0x000C
+    #define VCR_VC1_POS         0U
+    #define VCR_VC1_MSK         0x0003
+
 #define PCR_REG     0xB9
+    #define PCR_SYSD_POS        14U
+    #define PCR_SYSD_MSK        0xC000
+    #define PCR_SYS_DIS_POS     13U
+    #define PCR_SYS_DIS_MSK     0x2000
+    #define PCR_PEN_POS         0U
+    #define PCR_PEN_MSK         0x0001
+
 #define PLCR_REG    0xBA
+    #define PLCR_FR_POS         14U
+    #define PLCR_FR_MSK         0xC000
+    #define PLCR_MS_POS         8U
+    #define PLCR_MS_MSK         0x1F00
+    #define PLCR_NS_POS         0U
+    #define PLCR_NS_MSK         0x00FF
+
 #define CCR_REG     0xBB
+    #define CCR_LPD_POS         0U
+    #define CCR_LPD_MSK         0x003F
+
 #define PSCR1_REG   0xBC
+    #define PSCR1_TDC_POS       0U
+    #define PSCR1_TDC_MSK       0xFFFF
+
 #define PSCR2_REG   0xBD
+    #define PSCR2_TDC_POS       0U
+    #define PSCR2_TDC_MSK       0xFFFF
+
 #define PSCR3_REG   0xBE
+    #define PSCR3_PST_POS       0U
+    #define PSCR3_PST_MSK       0x1FFF
+
 #define PDR_REG     0xBF
+    #define PDR_GPD_POS         0U
+    #define PDR_GPD_MSK         0xFFFF
+
 #define OCR_REG     0xC0
+    #define OCR_RST_POS         8U
+    #define OCR_RST_MSK         0x0100
+    #define OCR_COP_POS         0U
+    #define OCR_COP_MSK         0x0001
+
 #define MRSR_REG    0xC1
+    #define MRSR_MRS_POS        0U
+    #define MRSR_MRS_MSK        0xFFFF
+
 #define RDCR_REG    0xC2
+    #define RDCR_RDC_POS        0U
+    #define RDCR_RDC_MSK        0xFFFF
+
 #define ARSR_REG    0xC3
+    #define ARSR_AR_POS         0U
+    #define ARSR_AR_MSK         0xFFFF
+
 #define LCR_REG     0xC4
+    #define LCR_IBC_POS         5U
+    #define LCR_IBC_MSK         0x0020
+    #define LCR_RT_POS          4U
+    #define LCR_RT_MSK          0x0010
+    #define LCR_RTB_POS         3U
+    #define LCR_RTB_MSK         0x0008
+    #define LCR_FBC_POS         2U
+    #define LCR_FBC_MSK         0x0004
+    #define LCR_FBT_POS         1U
+    #define LCR_FBT_MSK         0x0002
+    #define LCR_FBW_POS         0U
+    #define LCR_FBW_MSK         0x0001
+
 #define ICR_REG     0xC5
 #define ECR_REG     0xC6
 #define DAR1_REG    0xC7
@@ -116,37 +181,233 @@
 #define LTTR1_REG   0xD1
 #define LTTR2_REG   0xD2
 #define TSR_REG     0xD3
+    #define TSR_TER_POS                0U
+    #define TSR_TER_MSK                0x0001
+
 #define LRR_REG     0xD4
+    #define LRR_RRA_POS                0U
+    #define LRR_RRA_MSK                0x00FF
+
 #define PLLR_REG    0xD5
+    #define PLRR_LOCK_POS                0U
+    #define PLRR_LOCK_MSK                0xFFFF
+
 #define TR_REG      0xD6
+    #define TR_TM_FL0_POS                14U
+    #define TR_TM_FL0_MSK                0xC000
+    #define TR_EIC_POS                9U
+    #define TR_EIC_MSK                0x3E00
+    #define TR_FLM_POS                8U
+    #define TR_FLM_MSK                0x0100
+    #define TR_PNB_POS                2U
+    #define TR_PNB_MSK                0x00FC
+    #define TR_END_POS                1U
+    #define TR_END_MSK                0x0002
+    #define TR_CO_POS                0U
+    #define TR_CO_MSK                0x0001
+
 #define TECR_REG    0xD7
+    #define TECR_TEC_POS                0U
+    #define TECR_TEC_MSK                0xFFFF
+
 #define ACR1_REG    0xD8
+    #define ACR1_D3_DELAY_SEL3_2_POS    0U
+    #define ACR1_D3_DELAY_SEL3_2_MSK    0xFFFF
+    #define ACR1_D1_DELAY_SEL_POS       0U
+    #define ACR1_D1_DELAY_SEL_MSK       0xFFFF
+    #define ACR1_D3_DELAY_SEL1_0_POS    0U
+    #define ACR1_D3_DELAY_SEL1_0_MSK    0x00CF
+    #define ACR1_D0_DELAY_SEL_POS       0U
+    #define ACR1_D0_DELAY_SEL_MSK       0x003F
+
 #define ACR2_REG    0xD9
 #define ACR3_REG    0xDA
 #define ACR4_REG    0xDB
 #define IOCR_REG    0xDC
 #define VICR7_REG   0xDD
 #define LCFR_REG    0xDE
+    #define LCFR_LS_POS                0U
+    #define LCFR_LS_MSK                0x0003
+
 #define DAR7_REG    0xDF
-#define PUCR1_REG   0xE9
-#define PUCR2_REG   0xE0
-#define PUCR3_REG   0xE1
+    #define DAR7_HED_POS                0U
+    #define DAR7_HED_MSK                0x001F
+
+#define PUCR1_REG   0xE0
+    #define PUCR1_XTAL_PULL_POS              14U
+    #define PUCR1_XTAL_PULL_MSK              0xC000
+    #define PUCR1_PS4_PULL_POS               12U
+    #define PUCR1_PS4_PULL_MSK               0x3000
+    #define PUCR1_PS3_PULL_POS               10U
+    #define PUCR1_PS3_PULL_MSK               0x0C00
+    #define PUCR1_PS2_PULL_POS               8U
+    #define PUCR1_PS2_PULL_MSK               0x0300
+    #define PUCR1_PS1_PULL_POS               6U
+    #define PUCR1_PS1_PULL_MSK               0x00C0
+    #define PUCR1_PS0_PULL_POS               4U
+    #define PUCR1_PS0_PULL_MSK               0x0030
+    #define PUCR1_IS_PULL_POS                2U
+    #define PUCR1_IS_PULL_MSK                0x000C
+    #define PUCR1_MR_PULL_POS                0U
+    #define PUCR1_MR_PULL_MSK                0x0003
+
+#define PUCR2_REG   0xE1
+    #define PUCR2_DEN_PULL_POS              14U
+    #define PUCR2_DEN_PULL_MSK              0xC000
+    #define PUCR2_HS_PULL_POS               12U
+    #define PUCR2_HS_PULL_MSK               0x3000
+    #define PUCR2_PC_PULL_POS               10U
+    #define PUCR2_PC_PULL_MSK               0x0C00
+    #define PUCR2_VS_PULL_POS               8U
+    #define PUCR2_VS_PULL_MSK               0x0300
+    #define PUCR2_DH_PULL_POS               6U
+    #define PUCR2_DH_PULL_MSK               0x00C0
+    #define PUCR2_DM_PULL_POS               4U
+    #define PUCR2_DM_PULL_MSK               0x0030
+    #define PUCR2_DL_PULL_POS                2U
+    #define PUCR2_DL_PULL_MSK                0x000C
+    #define PUCR2_CSX_PULL_POS                0U
+    #define PUCR2_CSX_PULL_MSK                0x0003
+
+#define PUCR3_REG   0xE2
+    #define PUCR3_SDI_PULL_POS               8U
+    #define PUCR3_SDI_PULL_MSK               0x0300
+    #define PUCR3_SCK_PULL_POS               6U
+    #define PUCR3_SCK_PULL_MSK               0x00C0
+    #define PUCR3_SDC_PULL_POS               4U
+    #define PUCR3_SDC_PULL_MSK               0x0030
+    #define PUCR3_SHUT_PULL_POS                2U
+    #define PUCR3_SHUT_PULL_MSK                0x000C
+    #define PUCR3_CM_PULL_POS                0U
+    #define PUCR3_CM_PULL_MSK                0x0003
+
 #define CBCR1_REG   0xE9
-#define CBSR_REG    0xEA
-#define ECR_REG     0xEB
-#define VSDR_REG    0xEC
-#define TMR_REG     0xED
+    
+#define CBCR2_REG   0xEA
+    #define CBCR2_PWM_PS_POS                12U
+    #define CBCR2_PWM_PS_MSK                0xF000
+    #define CBCR2_BCD_PS_POS                8U
+    #define CBCR2_BCD_PS_MSK                0x0F00
+    #define CBCR2_CABC_MB_POS               0U
+    #define CBCR2_CABC_MB_MSK               0x00FF
+
+#define CBSR_REG    0xEB
+    #define CBSR_VGA_SEL_POS                12U
+    #define CBSR_VGA_SEL_MSK                0xF000
+    #define CBSR_BCL_POS                    1U
+    #define CBSR_BCL_MSK                    0x0100
+    #define CBSR_RDBV_EN_POS                0U
+    #define CBSR_RDBV_EN_MSK                0x00FF
+
+#define ECR_REG     0xEC
+    #define ECR_ENC_LW_POS                  4U
+    #define ECR_ENC_LW_MSK                  0xFFF0
+    #define ECR_ENC_MODE_POS                1U
+    #define ECR_ENC_MODE_MSK                0x0002
+    #define ECR_ENC_EN_POS                  0U
+    #define ECR_ENC_EN_MSK                  0x0001
+
+#define VSDR_REG    0xED
+    #define VSDR_VSD_POS                    8U
+    #define VSDR_VSD_MSK                    0xFF00
+    #define VSDR_HSD_POS                    0U
+    #define VSDR_HSD_MSK                    0x00FF
+
 #define TMR_REG     0xEE
+    #define TMR_TRIM_DONE_POS               15U
+    #define TMR_TRIM_DONE_MSK               0xFF00
+    #define TMR_TRIM_PASS_POS               14U
+    #define TMR_TRIM_PASS_MSK               0x00FF
+    #define TMR_XORC_DONE_POS               13U
+    #define TMR_XORC_DONE_MSK               0xFF00
+    #define TMR_XORC_SEL_POS                12U
+    #define TMR_XORC_SEL_MSK                0x00FF
+    #define TMR_XORC_EN_POS                 11U
+    #define TMR_XORC_EN_MSK                 0xFF00
+    #define TMR_VBIST_SRT_POS               10U
+    #define TMR_VBIST_SRT_MSK               0x00FF
+    #define TMR_VBIST_EN_POS                9U
+    #define TMR_VBIST_EN_MSK                0xFF00
+    #define TMR_TRIM_EN_POS                 8U
+    #define TMR_TRIM_EN_MSK                 0x00FF
+    #define TMR_TRIM_CMD_POS                4U
+    #define TMR_TRIM_CMD_MSK                0x00F
+    #define TMR_TRIM_CMD_XORC_FILTER_POS    0U
+    #define TMR_TRIM_CMD_XORC_FILTER_MSK    0x000F
+
 #define GPIO1_REG   0xEF
+    #define GPIO1_GPIO1_STAT_POS            15U
+    #define GPIO1_GPIO1_STAT_MSK            0x8000
+    #define GPIO1_GPIO1_CTR_POS             8U
+    #define GPIO1_GPIO1_CTR_MSK             0x7F00
+    #define GPIO1_GPIO0_STAT_POS            7U
+    #define GPIO1_GPIO0_STAT_MSK            0x0080
+    #define GPIO1_GPIO0_CTR_POS             0U
+    #define GPIO1_GPIO0_CTR_MSK             0x007F
 #define GPIO2_REG   0xF0
+    #define GPIO2_GPIO2_STAT_POS            7U
+    #define GPIO2_GPIO2_STAT_MSK            0x0080
+    #define GPIO2_GPIO2_CTR_POS             0U
+    #define GPIO2_GPIO2_CTR_MSK             0x007F
+
 #define DLYA01_REG  0xF1
+    #define DLYA01_DELAY_A_1_POS            8U
+    #define DLYA01_DELAY_A_1_MSK            0x3F00
+    #define DLYA01_DELAY_A_0_POS            0U
+    #define DLYA01_DELAY_A_0_MSK            0x003F
+
 #define DLYA23_REG  0xF2
+    #define DLYA23_DELAY_A_3_POS            8U
+    #define DLYA23_DELAY_A_3_MSK            0x3F00
+    #define DLYA23_DELAY_A_2_POS            0U
+    #define DLYA23_DELAY_A_2_MSK            0x003F
+
 #define DLYB01_REG  0xF3
+    #define DLYB01_DELAY_B_1_POS            8U
+    #define DLYB01_DELAY_B_1_MSK            0x3F00
+    #define DLYB01_DELAY_B_0_POS            0U
+    #define DLYB01_DELAY_B_0_MSK            0x003F
+
 #define DLYB23_REG  0xF4
+    #define DLYB23_DELAY_B_3_POS            8U
+    #define DLYB23_DELAY_B_3_MSK            0x3F00
+    #define DLYB23_DELAY_B_2_POS            0U
+    #define DLYB23_DELAY_B_2_MSK            0x003F
+
 #define DLYC01_REG  0xF5
+    #define DLYC01_DELAY_C_1_POS            8U
+    #define DLYC01_DELAY_C_1_MSK            0x3F00
+    #define DLYC01_DELAY_C_0_POS            0U
+    #define DLYC01_DELAY_C_0_MSK            0x003F
+
 #define DLYC23_REG  0xF6
+    #define DLYC23_DELAY_C_3_POS            8U
+    #define DLYC23_DELAY_C_3_MSK            0x3F00
+    #define DLYC23_DELAY_C_2_POS            0U
+    #define DLYC23_DELAY_C_2_MSK            0x003F
+
 #define ACR5_REG    0xF7
+    #define ACR5_D3_FB_E_POS                7U
+    #define ACR5_D3_FB_E_MSK                0x0080
+    #define ACR5_D3_FB_E_POS                6U
+    #define ACR5_D3_FB_E_MSK                0x0040
+    #define ACR5_D3_FB_E_POS                5U
+    #define ACR5_D3_FB_E_MSK                0x0020
+    #define ACR5_D2_FB_E_POS                4U
+    #define ACR5_D2_FB_E_MSK                0x0010
+    #define ACR5_D1_FB_E_POS                3U
+    #define ACR5_D1_FB_E_MSK                0x0008
+    #define ACR5_D0_FB_E_POS                2U
+    #define ACR5_D0_FB_E_MSK                0x0004
+    #define ACR5_XOR_TUNE_EN_POS            1U
+    #define ACR5_XOR_TUNE_EN_MSK            0x0002
+    #define ACR5_REG_CTR_POS                0U
+    #define ACR5_REG_CTR_MSK                0x0001
+
 #define RR_REG      0xFF
+    #define RR_RD_POS                       0U
+    #define RR_RD_MSK                       0xFFFF
+
 
 
 
