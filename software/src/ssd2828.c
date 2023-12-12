@@ -105,53 +105,80 @@ void ssd2828_MIPI_write_short_DCS(uint8_t reg,uint16_t data,int len){
     ssd2828_MIPI_write_long_DCS(reg, tmp, len);
 }
 
-/*
-uint16_t SSD_MIPI_ReadGeneric(uint8_t reg,uint16_t *len, uint16_t *status){
-    ssd2828_SPI_write_reg(0xb7,0x0382);
-    ssd2828_SPI_write_reg(0xc1,0x0002);
-    ssd2828_SPI_write_reg(0xc0,0x0001);
-
-    ssd2828_SPI_write_reg(0xbc,0x0001);
-    ssd2828_SPI_write_reg(0xbf,reg,;
-    //if(len!=0){
-        *len = ssd2828_SPI_read_reg(0xc2);
-    //}
-    //if(status!=0){  //0 - no error; 1 - read not ready
-        if((ssd2828_SPI_read_reg(0xc6)&1)==0){
-            *status=1;
-        }else{
-            *status=0;
-        }
-        if(ssd2828_SPI_read_reg(0xc3)!=0){
-            *status=2;
-        }else{
-            *status=0;
-        }
-    //}
-    return ssd2828_SPI_read_reg(0xff);
+void SPI_3W_SET_Cmd(uint16_t Sdata) 
+{ 
+  uint8_t i;
+  digitalWrite(CS_2828,0);
+  spi_delay();
+  digitalWrite(SDI_2828,0);
+  spi_delay();
+  digitalWrite(SCLK_2828 ,0); 
+  spi_delay();
+  digitalWrite(SCLK_2828 ,1);
+  spi_delay();
+  for(i=8; i>0; i--) 
+  {
+    if(Sdata&0x80)
+      digitalWrite(SDI_2828,1);
+    else
+      digitalWrite(SDI_2828,0);
+    spi_delay();
+    digitalWrite(SCLK_2828 ,0); 
+    spi_delay();
+    digitalWrite(SCLK_2828 ,1);
+    spi_delay();
+    Sdata <<= 1;
+  }
+  digitalWrite(SCLK_2828 ,0);
+  spi_delay();  
+  digitalWrite(CS_2828,1);
+  spi_delay();  
 }
-uint16_t SSD_MIPI_ReadDCS(uint8_t reg,uint16_t *len, uint16_t *status){
-    ssd2828_SPI_write_reg(0xb7,0x03c2);
-    ssd2828_SPI_write_reg(0xc1,0x00ff);
-    ssd2828_SPI_write_reg(0xc0,0x0002);
-
-    ssd2828_SPI_write_reg(0xbc,0x0001);
-    ssd2828_SPI_write_reg(0xbf,reg);
-    //if(len!=0){
-        *len = ssd2828_SPI_read_reg(0xc2);
-    //}
-    //if(status!=0){
-        if((ssd2828_SPI_read_reg(0xc6)&1)==0){
-            *status=1;
-        }else{
-            *status=0;
-        }
-        if(ssd2828_SPI_read_reg(0xc3)!=0){
-            *status=2;
-        }else{
-            *status=0;
-        }
-    //}
-    return ssd2828_SPI_read_reg(0xff);
+//-----------------------------------------------------------------------------
+void SPI_3W_SET_PAs(uint16_t Sdata)
+{
+  uint8_t i;
+  digitalWrite(CS_2828,0);
+  spi_delay();  
+  digitalWrite(SDI_2828,1);
+  spi_delay();  
+  digitalWrite(SCLK_2828 ,0);
+  spi_delay();  
+  digitalWrite(SCLK_2828 ,1);
+  spi_delay();  
+  for(i=8; i>0; i--) 
+  {
+    if(Sdata&0x80)
+      digitalWrite(SDI_2828,1);
+    else
+      digitalWrite(SDI_2828,0);
+    spi_delay();    
+    digitalWrite(SCLK_2828 ,0); 
+    spi_delay();    
+    digitalWrite(SCLK_2828 ,1);
+    spi_delay();
+    Sdata <<= 1;
+  }
+  digitalWrite(SCLK_2828 ,0);
+  spi_delay();
+  digitalWrite(CS_2828,1);
+  spi_delay();
 }
-*/
+//-----------------------------------------------------------------------------
+void SPI_WriteData(uint8_t value) 
+{
+  SPI_3W_SET_PAs(value);
+}
+//-----------------------------------------------------------------------------
+void SPI_WriteCmd(uint8_t value) 
+{
+  SPI_3W_SET_Cmd(value);
+}
+//-----------------------------------------------------------------------------
+void GP_COMMAD_PA(uint16_t num) 
+{
+  SPI_WriteCmd(0xbc);
+  SPI_WriteData(num&0xff);  
+  SPI_WriteData((num>>8)&0xff); 
+  SPI_WriteCmd(0xbf);
+}
