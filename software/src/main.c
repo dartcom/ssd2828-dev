@@ -65,9 +65,10 @@ int main(){
     delay_ms(100);
     ssd2828_init();
 
+   
 
     //enable EOT packet on end of HS transmission and check the CRC from the slave
-    ssd2828_SPI_write_reg(CFGR_REG,(uint16_t)(1<<CFGR_EOT_POS) | (1<<CFGR_ECD_POS));
+    ssd2828_SPI_write_reg(CFGR_REG,(uint16_t)(1<<CFGR_EOT_POS) | (1<<CFGR_ECD_POS) );
     
     //select 1 data lane mode
     ssd2828_SPI_write_reg(LCFR_REG,0x0000);
@@ -134,12 +135,15 @@ int main(){
     delay_ms(10);
     //enable 3V0
     GPIOB->ODR |= _3V0_EN;
-
+    //wait 10ms 
+    delay_ms(100);
     
     ssd2828_MIPI_write_short_DCS(0x11,0x00,1);
     delay_ms(150);
     ssd2828_MIPI_write_short_DCS(0x29,0x00,1);
-   
+    delay_ms(150);
+    ssd2828_MIPI_write_short_DCS(0x3A,0x55,1);
+    end:
     while(1){
         GPIOB->ODR |= _BACKLIGHT_EN;
         if(i == 0x2828){

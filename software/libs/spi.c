@@ -35,13 +35,13 @@ void spi_init(){
     SPI1->CR1 &= ~SPI_CR1_LSBFIRST;
     //enable the SS pin
     SPI1->CR2 |= SPI_CR2_SSOE;
-    //set as master and enable SPI
-    SPI1->CR1 |= SPI_CR1_SPE ;
+
 }
 
 
 void spi_exchange_8(uint8_t data_in, uint8_t *data_out){
     uint8_t tmp;
+    SPI1->CR1 |= SPI_CR1_SPE ;
     //wait for SPI1 to be available
     while((SPI1->SR & SPI_SR_BSY_Msk) != 0){
         __NOP();
@@ -56,5 +56,5 @@ void spi_exchange_8(uint8_t data_in, uint8_t *data_out){
     if(data_out != NULL){
         *data_out = tmp;
     }
-    
+    SPI1->CR1 &= ~SPI_CR1_SPE ;
 }

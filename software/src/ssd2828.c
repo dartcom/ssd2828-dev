@@ -82,9 +82,9 @@ void ssd2828_MIPI_write_long_generic(uint8_t reg, uint8_t* data, uint32_t len){
 }
 
 void ssd2828_MIPI_write_long_DCS(uint8_t reg, uint16_t* data, uint32_t len){
-    ssd2828_SPI_write_reg(0xB7, 0x0050);
-    ssd2828_SPI_write_reg(0xB8, 0x0000);
-    ssd2828_SPI_write_reg(0xBC, len);
+    ssd2828_SPI_write_reg(CFGR_REG, 0x0050);
+    ssd2828_SPI_write_reg(VCR_REG, 0x0000);
+    ssd2828_SPI_write_reg(PSCR1_REG, len);
     uint8_t tmp0[1]={0xBF};
     ssd2828_SPI_write(tmp0, 1);
     uint8_t tmp1[1]={1 << 8 |reg};
