@@ -257,7 +257,17 @@
 
 #define DAR4_REG    0xCC
     #define DAR4_CTD_POS                    8U
-    #define DAR4_CTD_MSK                    0xFF008023
+    #define DAR4_CTD_MSK                    0xFF00
+    #define DAR4_HTD_POS                    0U
+    #define DAR4_HTD_MSK                    0x00FF
+
+#define DAR5_REG    0xCD
+    #define DAR5_WUD_POS                    0U
+    #define DAR5_WUD_MSK                    0xFFFF
+
+#define DAR6_REG    0xCE
+    #define DAR6_TGO_POS                    8U
+    #define DAR6_TGO_MSK                    0x0F00
     #define DAR6_TGET_POS                   0U
     #define DAR6_TGET_MSK                   0x000F
 

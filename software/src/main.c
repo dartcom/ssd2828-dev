@@ -113,23 +113,38 @@ int main(){
     tmp = 0;
     ssd2828_SPI_write_reg(LCFR_REG, tmp);
 
-    SPI_WriteCmd(DAR1_REG);
-    SPI_WriteData(0x02);
-    SPI_WriteData(0x23);  // p1: HS-Data-zero  p2: HS-Data- prepare  --> 8031 issue
+    //SPI_WriteCmd(DAR1_REG);
+    //SPI_WriteData(0x02);
+    //SPI_WriteData(0x23);  // p1: HS-Data-zero  p2: HS-Data- prepare  --> 8031 issue
+    tmp = 0;
+    tmp = (3U<<DAR1_HZD_POS) | (0U<<DAR1_HPD_POS);
+    ssd2828_SPI_write_reg(DAR1_REG, tmp);
 
     delay(100);
 
-    SPI_WriteCmd(DAR2_REG);
-    SPI_WriteData(0x01);  // CLK Prepare
-    SPI_WriteData(0x23);  // Clk Zero
+    //SPI_WriteCmd(DAR2_REG);
+    //SPI_WriteData(0x01);  // CLK Prepare
+    //SPI_WriteData(0x23);  // Clk Zero
+    tmp = 0;
+    tmp = (6U<<DAR2_CXD_POS) | (0U<<DAR2_CPD_POS);
+    ssd2828_SPI_write_reg(DAR2_REG, tmp);
 
-    SPI_WriteCmd(DAR3_REG);   // local_write_reg(addr=0xCB,data=0x0510)
-    SPI_WriteData(0x10);  // Clk Post
-    SPI_WriteData(0x05);  // Clk Per
 
-    SPI_WriteCmd(DAR4_REG);   // local_write_reg(addr=0xCC,data=0x100A)
-    SPI_WriteData(0x05);  // HS Trail
-    SPI_WriteData(0x10);  // Clk Trail
+    //SPI_WriteCmd(DAR3_REG);   // local_write_reg(addr=0xCB,data=0x0510)
+    //SPI_WriteData(0x10);  // Clk Post
+    //SPI_WriteData(0x05);  // Clk Per
+    tmp = 0;
+    tmp = (4U<<DAR3_CPTD_POS) | (1U<<DAR3_CPED_POS);
+    ssd2828_SPI_write_reg(DAR3_REG, tmp);
+
+
+    //SPI_WriteCmd(DAR4_REG);   // local_write_reg(addr=0xCC,data=0x100A)
+    //SPI_WriteData(0x05);  // HS Trail
+    //SPI_WriteData(0x10);  // Clk Trail
+    tmp = 0;
+    tmp = (2U<<DAR4_CTD_POS) | (3U<<DAR4_HTD_POS);
+    ssd2828_SPI_write_reg(DAR4_REG, tmp);
+
 
     //LCD driver initialization
 
