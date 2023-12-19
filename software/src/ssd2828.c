@@ -1,5 +1,27 @@
 #include "ssd2828.h"
 
+enum STATE state;
+
+void ssd2828_state_LP(){
+    state = LP;
+}
+
+void ssd2828_state_HS(){
+    state = HS;
+}
+
+void ssd2828_state_VD(){
+    state = VD;
+}
+
+void ssd2828_SHUT_1(){
+    GPIOA->ODR |= SHUT;
+}
+
+void ssd2828_SHUT_0(){
+    GPIOA->ODR &= ~SHUT;
+}
+
 void ssd2828_gpio_init(){
     //enable GPIOA 
     RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;
@@ -54,43 +76,171 @@ uint16_t ssd2828_get_id(){
 
 void ssd2828_SPI_write_cmd(uint8_t data){
     GPIOA->ODR &= ~DC;
-    spi_exchange_8(&data, NULL);
+    spi_exchange_8(data, NULL);
     GPIOA->ODR |= DC;
 }
 
 void ssd2828_SPI_write_data(uint8_t data){
-    spi_exchange_8(&data, NULL);
+    spi_exchange_8(data, NULL);
 }
 
 void ssd2828_SPI_read_data(uint8_t *data){
     spi_exchange_8(0x00, data);
 }
 
-void GP_COMMAD_PA(uint16_t num){
-  ssd2828_SPI_write_cmd(0xBC);
-  ssd2828_SPI_write_data(num & 0xFF);  
-  ssd2828_SPI_write_data((num>>8) & 0xFF); 
-  ssd2828_SPI_write_cmd(0xBF);
-}
 
-void ssd2828_MIPI_write_DCS_short(uint8_t reg, uint16_t *data, uint32_t len){
+
+
+
+void ssd2828_MIPI_write_DCS_short_np(uint8_t DCS){
     uint16_t tmp = 0;
-    //set REN to 0, DCS to 1, LPE to 0
+    
     ssd2828_SPI_read_reg(CFGR_REG, &tmp);
-    tmp |= (1U<<CFGR_DCS_POS);
-    tmp &= ~(1U<<CFGR_REN_POS) & ~(1U<<CFGR_LPE_POS);
-    ssd2828_SPI_write_reg(CFGR_REG, tmp);
+    switch(state){
+        case LP:
+            ssd2828_SPI_write_cmd(CFGR_REG);
+            ssd2828_SPI_write_data(0x50);
+            ssd2828_SPI_write_data(0x02);
+        case HS:
+            ssd2828_SPI_write_cmd(CFGR_REG);
+            ssd2828_SPI_write_data(0x50&0XEF|0X03);
+            ssd2828_SPI_write_data(0x02);
+            break;
+        case VD:
+            ssd2828_SPI_write_cmd(CFGR_REG);
+            ssd2828_SPI_write_data(0x50&0XEF|0X0B);
+            ssd2828_SPI_write_data(0x02|0x01);
+            break;
+        default:
+
+            break;
+    };
+    
+    delay_us(10);
     //set virtual channel to 0
     ssd2828_SPI_write_reg(VCR_REG, 0x0000);
-    //set payload length on PSCR1
-    ssd2828_SPI_write_reg(PSCR1_REG, len);
+    //set payload length
+    ssd2828_SPI_write_reg(PSCR1_REG, 1);
+    ssd2828_SPI_write_reg(PSCR2_REG, 0x0000);
+    ssd2828_SPI_write_reg(PSCR3_REG, 1);
     //write on PDR
-    ssd2828_SPI_write_data(PDR_REG);
+    ssd2828_SPI_write_cmd(PDR_REG);
     //write reg
-    ssd2828_SPI_write_data(reg);
-    //write rest of data
-    for(uint32_t i = 0; i<len; i++){
-        ssd2828_SPI_write_data(data[i]);
+    ssd2828_SPI_write_data(DCS);
+}
+
+void ssd2828_MIPI_write_DCS_short_p(uint8_t DCS, uint16_t param){
+    uint16_t tmp = 0;
+    ssd2828_SPI_read_reg(CFGR_REG, &tmp);
+    switch(state){
+        case LP:
+            ssd2828_SPI_write_cmd(CFGR_REG);
+            ssd2828_SPI_write_data(0x50);
+            ssd2828_SPI_write_data(0x02);
+        case HS:
+            ssd2828_SPI_write_cmd(CFGR_REG);
+            ssd2828_SPI_write_data(0x50&0XEF|0X03);
+            ssd2828_SPI_write_data(0x02);
+            break;
+        case VD:
+            ssd2828_SPI_write_cmd(CFGR_REG);
+            ssd2828_SPI_write_data(0x50&0XEF|0X0B);
+            ssd2828_SPI_write_data(0x02|0x01);
+            break;
+        default:
+
+            break;
+    };
+    //set virtual channel to 0
+    ssd2828_SPI_write_reg(VCR_REG, 0x0000);
+    //set payload length
+    ssd2828_SPI_write_reg(PSCR1_REG, 2);
+    ssd2828_SPI_write_reg(PSCR2_REG, 0x0000);
+    ssd2828_SPI_write_reg(PSCR3_REG, 2);
+    //write on PDR
+    ssd2828_SPI_write_cmd(PDR_REG);
+    //write reg
+    ssd2828_SPI_write_data(DCS);
+    ssd2828_SPI_write_data(param);
+}
+
+void ssd2828_MIPI_write_DCS_long_p(uint8_t DCS, uint16_t *params, uint32_t len){
+    uint16_t tmp = 0;
+    //set REN 0, DCS 1, LPE 1, EOT 1, HCLK 1, HS 0, CKE 0
+    ssd2828_SPI_read_reg(CFGR_REG, &tmp);
+    switch(state){
+        case LP:
+            ssd2828_SPI_write_cmd(CFGR_REG);
+            ssd2828_SPI_write_data(0x10);
+            ssd2828_SPI_write_data(0x06);
+        case HS:
+            ssd2828_SPI_write_cmd(CFGR_REG);
+            ssd2828_SPI_write_data(0x10&0XEF|0X03);
+            ssd2828_SPI_write_data(0x06);
+            break;
+        case VD:
+            ssd2828_SPI_write_cmd(CFGR_REG);
+            ssd2828_SPI_write_data(0x10&0XEF|0X0B);
+            ssd2828_SPI_write_data(0x06|0x01);
+            break;
+        default:
+
+            break;
+    };
+    //set virtual channel to 0
+    ssd2828_SPI_write_reg(VCR_REG, 0x0000);
+    //set payload length
+    ssd2828_SPI_write_reg(PSCR1_REG, len+1);
+    ssd2828_SPI_write_reg(PSCR2_REG, (len+1) >> 16);
+    ssd2828_SPI_write_reg(PSCR3_REG, len+1);
+    //write on PDR
+    ssd2828_SPI_write_cmd(PDR_REG);
+    //write reg
+    ssd2828_SPI_write_data(DCS);
+    for(uint32_t i = 0; i < len; i++){
+        ssd2828_SPI_write_data(params[i]);
     }
 }
+
+void ssd2828_MIPI_write_generic_short_np(uint8_t generic){
+
+}
+
+void ssd2828_MIPI_write_generic_short_p(uint8_t generic, uint16_t param){
+
+}
+
+void ssd2828_MIPI_write_generic_long_p(uint8_t generic, uint16_t *params, uint32_t len){
+
+}
+
+
+void ssd2828_MIPI_write_DCS(uint8_t DCS, uint16_t *params, uint32_t len){
+    switch (len){
+        case 0:
+            ssd2828_MIPI_write_DCS_short_np(DCS);
+            break;
+        case 1:
+            ssd2828_MIPI_write_DCS_short_p(DCS, *params);
+            break;
+        default:
+            ssd2828_MIPI_write_DCS_long_p(DCS, params, len);
+            break;
+    }
+}
+
+void ssd2828_MIPI_write_generic(uint8_t generic, uint16_t *params, uint32_t len){
+    switch (len){
+        case 0:
+            ssd2828_MIPI_write_generic_short_np(generic);
+            break;
+        case 1:
+            ssd2828_MIPI_write_generic_short_p(generic, *params);
+            break;
+        default:
+            ssd2828_MIPI_write_generic_long_p(generic, params, len);
+            break;
+    }
+}
+
 

@@ -16,120 +16,120 @@
 #define DIR_REG     0xB0
 
 #define VICR1_REG   0xB1
-    #define VICR1_VSA_POS       8U
-    #define VICR1_VSA_MSK       0xFF00
-    #define VICR1_HSA_POS       0U
-    #define VICR1_HSA_MSK       0x00FF
+    #define VICR1_VSA_POS                   8U
+    #define VICR1_VSA_MSK                   0xFF00
+    #define VICR1_HSA_POS                   0U
+    #define VICR1_HSA_MSK                   0x00FF
 
 #define VICR2_REG   0xB2
-    #define VICR2_VBP_POS       8U
-    #define VICR2_VBP_MSK       0xFF00
-    #define VICR2_HBP_POS       0U
-    #define VICR2_HBP_MSK       0x00FF
+    #define VICR2_VBP_POS                   8U
+    #define VICR2_VBP_MSK                   0xFF00
+    #define VICR2_HBP_POS                   0U
+    #define VICR2_HBP_MSK                   0x00FF
 
 #define VICR3_REG   0xB3
-    #define VICR3_VFP_POS       8U
-    #define VICR3_VFP_MSK       0xFF00
-    #define VICR3_HFP_POS       0U
-    #define VICR3_HFP_MSK      0x00FF
+    #define VICR3_VFP_POS                   8U
+    #define VICR3_VFP_MSK                   0xFF00
+    #define VICR3_HFP_POS                   0U
+    #define VICR3_HFP_MSK                   0x00FF
 
 #define VICR4_REG   0xB4
-    #define VICR4_HACT_POS      0U
-    #define VICR4_HACT_MSK      0xFFFF
+    #define VICR4_HACT_POS                  0U
+    #define VICR4_HACT_MSK                  0xFFFF
 
 #define VICR5_REG   0xB5
-    #define VICR5_VACT_POS      0U
-    #define VICR5_VACT_MSK      0xFFFF
+    #define VICR5_VACT_POS                  0U
+    #define VICR5_VACT_MSK                  0xFFFF
 
 #define VICR6_REG   0xB6
-    #define VICR6_VS_P_POS      15U
-    #define VICR6_VS_P_MSK      0x8000
-    #define VICR6_HS_P_POS      14U
-    #define VICR6_HS_P_MSK      0x4000
-    #define VICR6_PCLK_P_POS    13U
-    #define VICR6_PCLK_P_MSK    0x2000
-    #define VICR6_CBM_POS       8U
-    #define VICR6_CBM_MSK       0x0100
-    #define VICR6_NVB_POS       7U
-    #define VICR6_NVB_MSK       0x0080
-    #define VICR6_NVD_POS       6U
-    #define VICR6_NVD_MSK       0x0040
-    #define VICR6_BLLP_POS      5U
-    #define VICR6_BLLP_MSK      0x0020
-    #define VICR6_VCS_POS       4U
-    #define VICR6_VCS_MSK       0x0010
-    #define VICR6_VM_POS        2U
-    #define VICR6_VM_MSK        0x000C
-    #define VICR6_VPF_POS       0U
-    #define VICR6_VPF_MSK       0x0003
+    #define VICR6_VS_P_POS                  15U
+    #define VICR6_VS_P_MSK                  0x8000
+    #define VICR6_HS_P_POS                  14U
+    #define VICR6_HS_P_MSK                  0x4000
+    #define VICR6_PCLK_P_POS                13U
+    #define VICR6_PCLK_P_MSK                0x2000
+    #define VICR6_CBM_POS                   8U
+    #define VICR6_CBM_MSK                   0x0100
+    #define VICR6_NVB_POS                   7U
+    #define VICR6_NVB_MSK                   0x0080
+    #define VICR6_NVD_POS                   6U
+    #define VICR6_NVD_MSK                   0x0040
+    #define VICR6_BLLP_POS                  5U
+    #define VICR6_BLLP_MSK                  0x0020
+    #define VICR6_VCS_POS                   4U
+    #define VICR6_VCS_MSK                   0x0010
+    #define VICR6_VM_POS                    2U
+    #define VICR6_VM_MSK                    0x000C
+    #define VICR6_VPF_POS                   0U
+    #define VICR6_VPF_MSK                   0x0003
 
 #define CFGR_REG    0xB7
-    #define CFGR_TXD_POS        11U
-    #define CFGR_TXD_MSK        0x0800
-    #define CFGR_LPE_POS        10U
-    #define CFGR_LPE_MSK        0x0400
-    #define CFGR_EOT_POS        9U
-    #define CFGR_EOT_MSK        0x0200
-    #define CFGR_ECD_POS        8U
-    #define CFGR_ECD_MSK        0x0100
-    #define CFGR_REN_POS        7U
-    #define CFGR_REN_MSK        0x0080
-    #define CFGR_DCS_POS        6U
-    #define CFGR_DCS_MSK        0x0040
-    #define CFGR_CSS_POS        5U
-    #define CFGR_CSS_MSK        0x0020
-    #define CFGR_HCLK_POS       4U
-    #define CFGR_HCLK_MSK       0x0010
-    #define CFGR_VEN_POS        3U
-    #define CFGR_VEN_MSK        0x0008
-    #define CFGR_SLP_POS        2U
-    #define CFGR_SLP_MSK        0x0004
-    #define CFGR_CKE_POS        1U
-    #define CFGR_CKE_MSK        0x0002
-    #define CFGR_HS_POS         0U
-    #define CFGR_HS_MSK         0x0001
+    #define CFGR_TXD_POS                    11U
+    #define CFGR_TXD_MSK                    0x0800
+    #define CFGR_LPE_POS                    10U
+    #define CFGR_LPE_MSK                    0x0400
+    #define CFGR_EOT_POS                    9U
+    #define CFGR_EOT_MSK                    0x0200
+    #define CFGR_ECD_POS                    8U
+    #define CFGR_ECD_MSK                    0x0100
+    #define CFGR_REN_POS                    7U
+    #define CFGR_REN_MSK                    0x0080
+    #define CFGR_DCS_POS                    6U
+    #define CFGR_DCS_MSK                    0x0040
+    #define CFGR_CSS_POS                    5U
+    #define CFGR_CSS_MSK                    0x0020
+    #define CFGR_HCLK_POS                   4U
+    #define CFGR_HCLK_MSK                   0x0010
+    #define CFGR_VEN_POS                    3U
+    #define CFGR_VEN_MSK                    0x0008
+    #define CFGR_SLP_POS                    2U
+    #define CFGR_SLP_MSK                    0x0004
+    #define CFGR_CKE_POS                    1U
+    #define CFGR_CKE_MSK                    0x0002
+    #define CFGR_HS_POS                     0U
+    #define CFGR_HS_MSK                     0x0001
 
 #define VCR_REG     0xB8
-    #define VCR_VCM_POS         6U
-    #define VCR_VCM_MSK         0x00C0
-    #define VCR_VCE_POS         4U
-    #define VCR_VCE_MSK         0x0030
-    #define VCR_VC2_POS         2U
-    #define VCR_VC2_MSK         0x000C
-    #define VCR_VC1_POS         0U
-    #define VCR_VC1_MSK         0x0003
+    #define VCR_VCM_POS                     6U
+    #define VCR_VCM_MSK                     0x00C0
+    #define VCR_VCE_POS                     4U
+    #define VCR_VCE_MSK                     0x0030
+    #define VCR_VC2_POS                     2U
+    #define VCR_VC2_MSK                     0x000C
+    #define VCR_VC1_POS                     0U
+    #define VCR_VC1_MSK                     0x0003
 
 #define PCR_REG     0xB9
-    #define PCR_SYSD_POS        14U
-    #define PCR_SYSD_MSK        0xC000
-    #define PCR_SYS_DIS_POS     13U
-    #define PCR_SYS_DIS_MSK     0x2000
-    #define PCR_PEN_POS         0U
-    #define PCR_PEN_MSK         0x0001
+    #define PCR_SYSD_POS                    14U
+    #define PCR_SYSD_MSK                    0xC000
+    #define PCR_SYS_DIS_POS                 13U
+    #define PCR_SYS_DIS_MSK                 0x2000
+    #define PCR_PEN_POS                     0U
+    #define PCR_PEN_MSK                     0x0001
 
 #define PLCR_REG    0xBA
-    #define PLCR_FR_POS         14U
-    #define PLCR_FR_MSK         0xC000
-    #define PLCR_MS_POS         8U
-    #define PLCR_MS_MSK         0x1F00
-    #define PLCR_NS_POS         0U
-    #define PLCR_NS_MSK         0x00FF
+    #define PLCR_FR_POS                     14U
+    #define PLCR_FR_MSK                     0xC000
+    #define PLCR_MS_POS                     8U
+    #define PLCR_MS_MSK                     0x1F00
+    #define PLCR_NS_POS                     0U
+    #define PLCR_NS_MSK                     0x00FF
 
 #define CCR_REG     0xBB
-    #define CCR_LPD_POS         0U
-    #define CCR_LPD_MSK         0x003F
+    #define CCR_LPD_POS                     0U
+    #define CCR_LPD_MSK                     0x003F
 
 #define PSCR1_REG   0xBC
-    #define PSCR1_TDC_POS       0U
-    #define PSCR1_TDC_MSK       0xFFFF
+    #define PSCR1_TDC_POS                   0U
+    #define PSCR1_TDC_MSK                   0xFFFF
 
 #define PSCR2_REG   0xBD
-    #define PSCR2_TDC_POS       0U
-    #define PSCR2_TDC_MSK       0xFFFF
+    #define PSCR2_TDC_POS                   0U
+    #define PSCR2_TDC_MSK                   0xFFFF
 
 #define PSCR3_REG   0xBE
-    #define PSCR3_PST_POS       0U
-    #define PSCR3_PST_MSK       0x1FFF
+    #define PSCR3_PST_POS                   0U
+    #define PSCR3_PST_MSK                   0x1FFF
 
 #define PDR_REG     0xBF
     #define PDR_GPD_POS                     0U
@@ -564,10 +564,10 @@
     #define DLYC23_DELAY_C_2_MSK            0x003F
 
 #define ACR5_REG    0xF7
-    #define ACR5_DEC_XOR_E_POS                7U
-    #define ACR5_DEC_XOR_E_MSK                0x0080
-    #define ACR5_DEC_FB_E_POS                6U
-    #define ACR5_DEC_FB_E_MSK                0x0040
+    #define ACR5_DEC_XOR_E_POS              7U
+    #define ACR5_DEC_XOR_E_MSK              0x0080
+    #define ACR5_DEC_FB_E_POS               6U
+    #define ACR5_DEC_FB_E_MSK               0x0040
     #define ACR5_D3_FB_E_POS                5U
     #define ACR5_D3_FB_E_MSK                0x0020
     #define ACR5_D2_FB_E_POS                4U
@@ -585,16 +585,22 @@
     #define RR_RD_POS                       0U
     #define RR_RD_MSK                       0xFFFF
 
+enum STATE {LP, HS, VD};
 
 
+void ssd2828_state_LP();
+
+void ssd2828_state_HS();
+
+void ssd2828_state_VD();
+
+void ssd2828_SHUT_1();
+
+void ssd2828_SHUT_0();
 
 void ssd2828_gpio_init();
 
 void ssd2828_init();
-
-void ssd2828_SPI_write(uint8_t *buffer, uint32_t len);
-
-void ssd2828_SPI_read(uint8_t *buffer, uint32_t len);
 
 void ssd2828_SPI_write_reg(uint8_t reg, uint16_t val);
 
@@ -602,12 +608,33 @@ void ssd2828_SPI_read_reg(uint8_t reg, uint16_t *val);
 
 uint16_t ssd2828_get_id();
 
-void ssd2828_MIPI_write_long_generic(uint8_t reg, uint8_t* data, uint32_t len);
+void ssd2828_SPI_write_cmd(uint8_t data);
 
-void ssd2828_MIPI_write_long_DCS(uint8_t reg, uint16_t* data, uint32_t len);
+void ssd2828_SPI_write_data(uint8_t data);
 
-void ssd2828_MIPI_write_short_generic(uint8_t reg,uint16_t data,int len);
-void ssd2828_MIPI_write_short_DCS(uint8_t reg,uint16_t data,int len);
+void ssd2828_SPI_read_data(uint8_t *data);
+
+
+
+void ssd2828_MIPI_write_DCS(uint8_t DCS, uint16_t *params, uint32_t len);
+
+void ssd2828_MIPI_write_generic(uint8_t generic, uint16_t *params, uint32_t len);
+
+
+
+void ssd2828_MIPI_write_DCS_short_np(uint8_t DCS);
+
+void ssd2828_MIPI_write_DCS_short_p(uint8_t DCS, uint16_t param);
+
+void ssd2828_MIPI_write_DCS_long_p(uint8_t DCS, uint16_t *params, uint32_t len);
+
+void ssd2828_MIPI_write_generic_short_np(uint8_t generic);
+
+void ssd2828_MIPI_write_generic_SHORT_p(uint8_t generic, uint16_t param);
+
+void ssd2828_MIPI_write_generic_LONG_p(uint8_t generic, uint16_t *params, uint32_t len);
+
+
 
 
 #endif 
