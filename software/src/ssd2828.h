@@ -13,6 +13,16 @@
 #define SHUT    GPIO_ODR_OD2
 
 
+#define LCD_VSPW        4U
+#define LCD_HSPW        40U
+#define LCD_VBPD        34U
+#define LCD_HBPD        40U
+#define LCD_VFPD        35U
+#define LCD_HFPD        40U
+#define LCD_XSIZE_TFT   240U
+#define LCD_YSIZE_TFT   240U
+
+
 #define DIR_REG     0xB0
 
 #define VICR1_REG   0xB1
@@ -633,6 +643,28 @@ void ssd2828_MIPI_write_generic_short_np(uint8_t generic);
 void ssd2828_MIPI_write_generic_SHORT_p(uint8_t generic, uint16_t param);
 
 void ssd2828_MIPI_write_generic_LONG_p(uint8_t generic, uint16_t *params, uint32_t len);
+
+
+
+
+
+
+
+
+void ssd2828_write_cfg();
+
+void ssd2828_set_cfg();
+
+void ssd2828_write_lcd_params();
+
+
+void SSD_WritePacket(const uint8_t *PData);
+
+void lcd_init();
+
+
+
+
 
 
 

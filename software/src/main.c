@@ -45,8 +45,29 @@ void gpio_init(){
 }
 
 
+void fill_line(uint8_t r, uint8_t g, uint8_t b){
+    uint32_t i;
+    ssd2828_SPI_write_reg(PSCR1_REG, ((240*3)+1)&0x0FFF);
+    ssd2828_SPI_write_cmd(PDR_REG);//0xBF
+    ssd2828_SPI_write_data(0x3C);
+    for(i = 0; i < 240; i++){
+        ssd2828_SPI_write_data(r);
+        ssd2828_SPI_write_data(g);
+        ssd2828_SPI_write_data(b);
+    }
+}
+
+void fill_screen(uint8_t r, uint8_t g, uint8_t b){
+    uint32_t i;
+    for(i = 0; i < 240; i++){
+        fill_line(r,g,b);
+    }
+}
+
 int main(){
     uint16_t i = 0, tmp = 0;
+    const uint8_t DISPON[]={1,0x29};
+    const uint8_t BLANK[]={1,0x19};
     SystemClock_Config();
     gpio_init();
     delay_init();
@@ -62,11 +83,8 @@ int main(){
     delay_ms(20);
     
 
-    delay_ms(100);
-    ssd2828_init();
-
-
-
+    
+    
     //enable 1V8
     GPIOB->ODR |= _1V8_EN;
     //pull rst high
@@ -87,68 +105,40 @@ int main(){
     delay_ms(100);
 
    
-
-
-    tmp = (1<<CFGR_HCLK_POS);
-    ssd2828_SPI_write_reg(CFGR_REG, tmp);
-
-    ssd2828_SPI_write_reg(VCR_REG, tmp);
-
-    ssd2828_SPI_write_reg(PCR_REG, tmp);
-
-    ssd2828_SPI_write_reg(PLCR_REG, 0x0000);
-    tmp = (4U<<PLCR_NS_POS) | (1U<<PLCR_MS_POS);    //target 96Mbps
-    ssd2828_SPI_write_reg(PLCR_REG, tmp);
-
-    ssd2828_SPI_write_reg(CCR_REG, 0x0000);
-    tmp = (1U<<CCR_LPD_POS);    //target 96Mbps
-    ssd2828_SPI_write_reg(CCR_REG, tmp);
-
-    tmp = (1<<PCR_PEN_POS);
-    ssd2828_SPI_write_reg(PCR_REG, tmp);
-
-    ssd2828_SPI_write_reg(LCFR_REG, tmp);
-
-    tmp = (3U<<DAR1_HZD_POS) | (0U<<DAR1_HPD_POS);
-    ssd2828_SPI_write_reg(DAR1_REG, tmp);
-
-    delay_ms(100);
-
-    tmp = (6U<<DAR2_CXD_POS) | (0U<<DAR2_CPD_POS);
-    ssd2828_SPI_write_reg(DAR2_REG, tmp);
-
-    tmp = (4U<<DAR3_CPTD_POS) | (1U<<DAR3_CPED_POS);
-    ssd2828_SPI_write_reg(DAR3_REG, tmp);
-
-    tmp = (2U<<DAR4_CTD_POS) | (3U<<DAR4_HTD_POS);
-    ssd2828_SPI_write_reg(DAR4_REG, tmp);
-
-
-
-
-
-    ssd2828_state_HS();
-    
-
-    ssd2828_MIPI_write_DCS(0x11,NULL, 0);
-    delay_ms(240);
-
-
-    ssd2828_MIPI_write_DCS(0x29,NULL, 0);
-    delay_ms(240);
-
+    ssd2828_init();
+    ssd2828_write_lcd_params();
 
    
+    ssd2828_write_cfg();
+    lcd_init();
+    ssd2828_set_cfg();
+    delay_ms(60);
     
+    
+
+    SSD_WritePacket(DISPON);
+    
+
+    GPIOB->ODR |= _BACKLIGHT_EN;
+  
+    
+   
    
     while(1){
-        GPIOB->ODR |= _BACKLIGHT_EN;
+
+        fill_screen(0xFF, 0, 0);
+        fill_screen(0, 0xFF, 0);
+        fill_screen(0, 0, 0xFF);
+
+        i = ssd2828_get_id();
         if(i == 0x2828){
             GPIOC->ODR ^= GPIO_ODR_OD13;
             
         }
-        i = ssd2828_get_id();
+        
         delay_ms(100);
+        
+        
     }
     return 0;
 }

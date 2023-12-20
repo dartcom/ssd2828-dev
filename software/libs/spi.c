@@ -26,7 +26,7 @@ void spi_init(){
     //enable SPI1 in RCC
     RCC->APB2ENR |= RCC_APB2ENR_SPI1EN;
     //set baudrate to fclk/128
-    SPI1->CR1 |= (0b110 << SPI_CR1_BR_Pos) | SPI_CR1_MSTR;
+    SPI1->CR1 |= (0b101 << SPI_CR1_BR_Pos) | SPI_CR1_MSTR;
     //set CPOL CPHA to 0
     SPI1->CR1 &= ~SPI_CR1_CPHA & ~SPI_CR1_CPOL;
     //set 8-bit data drame
