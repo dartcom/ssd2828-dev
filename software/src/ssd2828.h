@@ -8,19 +8,28 @@
 #include "../libs/delay.h"
 #include "../libs/spi.h"
 
-#define RST     GPIO_ODR_OD3
-#define DC      GPIO_ODR_OD1
-#define SHUT    GPIO_ODR_OD2
+#define SSD2828_C_PORT  GPIOA
+#define SSD2828_RST     3U
+#define SSD2828_DC      1U
+#define SSD2828_SHUT    2U
+
+#define SSD2828_V_PORT  GPIOB
+#define SSD2828_1V2     2U
+#define SSD2828_3V3     0U
 
 
-#define LCD_VSPW        4U
-#define LCD_HSPW        40U
-#define LCD_VBPD        34U
-#define LCD_HBPD        40U
-#define LCD_VFPD        35U
-#define LCD_HFPD        40U
-#define LCD_XSIZE_TFT   240U
-#define LCD_YSIZE_TFT   240U
+
+struct SSD2828_LCD_PARAMS{
+    uint16_t VSPW;
+    uint16_t HSPW;
+    uint16_t VBPD;
+    uint16_t HBPD;
+    uint16_t VFPD;
+    uint16_t HFPD;
+    uint16_t XSIZE;
+    uint16_t YSIZE;
+    uint16_t lanes;
+};
 
 
 #define DIR_REG     0xB0
@@ -595,14 +604,7 @@
     #define RR_RD_POS                       0U
     #define RR_RD_MSK                       0xFFFF
 
-enum STATE {LP, HS, VD};
 
-
-void ssd2828_state_LP();
-
-void ssd2828_state_HS();
-
-void ssd2828_state_VD();
 
 void ssd2828_SHUT_1();
 
@@ -624,45 +626,31 @@ void ssd2828_SPI_write_data(uint8_t data);
 
 void ssd2828_SPI_read_data(uint8_t *data);
 
+void ssd2828_MIPI_write_DCS_short_np(uint8_t cmd);
 
+void ssd2828_MIPI_write_DCS_short_p(uint8_t cmd, uint16_t param);
 
-void ssd2828_MIPI_write_DCS(uint8_t DCS, uint16_t *params, uint32_t len);
+void ssd2828_MIPI_write_DCS_long_p(uint8_t cmd, uint16_t *params, uint32_t len);
 
-void ssd2828_MIPI_write_generic(uint8_t generic, uint16_t *params, uint32_t len);
+void ssd2828_MIPI_write_generic_short_np(uint8_t cmd);
 
+void ssd2828_MIPI_write_generic_short_p(uint8_t cmd, uint16_t param);
 
-
-void ssd2828_MIPI_write_DCS_short_np(uint8_t DCS);
-
-void ssd2828_MIPI_write_DCS_short_p(uint8_t DCS, uint16_t param);
-
-void ssd2828_MIPI_write_DCS_long_p(uint8_t DCS, uint16_t *params, uint32_t len);
-
-void ssd2828_MIPI_write_generic_short_np(uint8_t generic);
-
-void ssd2828_MIPI_write_generic_SHORT_p(uint8_t generic, uint16_t param);
-
-void ssd2828_MIPI_write_generic_LONG_p(uint8_t generic, uint16_t *params, uint32_t len);
-
-
-
-
+void ssd2828_MIPI_write_generic_long_p(uint8_t cmd, uint16_t *params, uint32_t len);
 
 
 
 
 void ssd2828_write_cfg();
 
-void ssd2828_set_cfg();
+void ssd2828_en_BIST();
 
-void ssd2828_write_lcd_params();
+void ssd2828_write_lcd_params(struct SSD2828_LCD_PARAMS params);
 
 
 void SSD_WritePacket(const uint8_t *PData);
 
 void lcd_init();
-
-
 
 
 

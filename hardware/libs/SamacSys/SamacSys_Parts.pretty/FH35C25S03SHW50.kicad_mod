@@ -74,7 +74,7 @@
   (pad "25" smd rect (at -3.6 1.375) (size 0.3 0.8) (layers "F.Cu" "F.Paste" "F.Mask") (tstamp dc6399a1-5c83-4d20-8286-7446875e647c))
   (pad "MP1" smd rect (at 4.3 1.101) (size 0.4 0.95) (layers "F.Cu" "F.Paste" "F.Mask") (tstamp d5561a9a-d439-4f45-864d-01bfaddf4cb6))
   (pad "MP2" smd rect (at -4.3 1.101) (size 0.4 0.95) (layers "F.Cu" "F.Paste" "F.Mask") (tstamp eae8ae3a-3950-4b3b-ad21-c64e9c124b96))
-  (model "C:/Users/dartcom/Desktop/ssd2828-dev/hardware/libs/SamacSys/SamacSys_Parts.3dshapes/FH35C-25S-0.3SHW_50_.stp"
+  (model "${KIPRJMOD}/libs/SamacSys/SamacSys_Parts.3dshapes/FH35C-25S-0.3SHW_50_.stp"
     (offset (xyz 1.969999999 -0.5299999634 -1.940000028))
     (scale (xyz 1 1 1))
     (rotate (xyz -90 0 -90))

@@ -57,7 +57,7 @@ OS = arm-none-eabi-size
 
 
 AS_SRC = 	$(START_SCRIPT)
-C_SRC = 	$(INIT_SCRIPT) main.c delay.c spi.c ssd2828.c clk.c H154QN01.c
+C_SRC = 	$(INIT_SCRIPT) main.c delay.c spi.c ssd2828.c clk.c LH154Q01.c
 
 OBJS = 	$(AS_SRC:%.s=$(BUILD_DIR)/%.o)
 OBJS += $(C_SRC:%.c=$(BUILD_DIR)/%.o)
