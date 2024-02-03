@@ -57,7 +57,7 @@ OS = arm-none-eabi-size
 
 
 AS_SRC = 	$(START_SCRIPT)
-C_SRC = 	$(INIT_SCRIPT) main.c delay.c spi.c ssd2828.c clk.c 
+C_SRC = 	$(INIT_SCRIPT) main.c delay.c spi.c ssd2828.c clk.c H154QN01.c
 
 OBJS = 	$(AS_SRC:%.s=$(BUILD_DIR)/%.o)
 OBJS += $(C_SRC:%.c=$(BUILD_DIR)/%.o)
@@ -97,5 +97,5 @@ clean: $(BUILD_DIR)/$(TARGET).bin
 flash_cmsis_dap: $(BUILD_DIR)/$(TARGET).elf
 	openocd -f interface/cmsis-dap.cfg -f board/atmel_sam3x_ek.cfg -c "program $< verify reset exit"
 
-flash_stlink: $(BUILD_DIR)/$(TARGET).elf
+flash: $(BUILD_DIR)/$(TARGET).elf
 	openocd -f interface/stlink.cfg -f target/stm32f4x.cfg -c "program $(BUILD_DIR)/$(TARGET).elf verify reset exit"
