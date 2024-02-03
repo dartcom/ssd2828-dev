@@ -17,7 +17,7 @@
 #define _3V3_EN         GPIO_ODR_OD0
 #define _BACKLIGHT_EN   GPIO_ODR_OD13
 
-#define _RST            GPIO_ODR_OD15
+#define _RST            GPIO_ODR_OD14
 
 void gpio_init(){
     //enable GPIOC and GPIOA GPIOB GPIOC
@@ -72,6 +72,7 @@ int main(){
     gpio_init();
     delay_init();
     spi_init();
+    delay_ms(1500);
     
     //enable 1V2
     GPIOB->ODR |= _1V2_EN;
@@ -82,7 +83,8 @@ int main(){
     //wait 20ms 
     delay_ms(20);
     
-
+    ssd2828_init();
+    ssd2828_write_cfg();
     
     
     //enable 1V8
@@ -90,7 +92,7 @@ int main(){
     //pull rst high
     GPIOB->ODR |= _RST;
     //wait 250ms 
-    delay_ms(250);
+    delay_ms(300);
     //pull rst low
     GPIOB->ODR &= ~_RST;
     //wait 10ms 
@@ -102,21 +104,14 @@ int main(){
     //enable 3V0
     GPIOB->ODR |= _3V0_EN;
     //wait 10ms 
-    delay_ms(100);
+    delay_ms(10);
 
    
-    ssd2828_init();
-    ssd2828_write_lcd_params();
-
-   
-    ssd2828_write_cfg();
+    
     lcd_init();
-    ssd2828_set_cfg();
-    delay_ms(60);
-    
-    
+    //ssd2828_set_cfg();
 
-    SSD_WritePacket(DISPON);
+   
     
 
     GPIOB->ODR |= _BACKLIGHT_EN;
