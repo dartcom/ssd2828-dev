@@ -67,7 +67,9 @@ void LH154Q01_start(){
 
 
 void LH154Q01_init_GPIO(){
-    //GPIO B already enabled
+    //enable GPIOB
+    RCC->AHB1ENR |=  RCC_AHB1ENR_GPIOBEN;
+
     //set 1V8 3V0 as outputs
     LH154Q01_V_PORT->MODER |=   (1U << (LH154Q01_1V8*2)) | (1U << (LH154Q01_3V0*2));
     //set to push pull

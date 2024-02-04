@@ -10,6 +10,7 @@
 
 #include "ssd2828.h"
 #include "LH154Q01.h"
+#include "VS035ZSM.h"
 #include "clk.h"
 
 
@@ -59,30 +60,31 @@ int main(){
     
     
     ssd2828_init();
-    LH154Q01_init();
-    LH154Q01_SSD2828_write_cfg();
+    //LH154Q01_init();
+    //LH154Q01_SSD2828_write_cfg();
+    //LH154Q01_start();
+    //LH154Q01_backlight(1);
+    VS035ZSM_init();
+    VS035ZSM_init_BACKLIGHT();
+    VS035ZSM_SSD2828_write_cfg();
+    VS035ZSM_start();
     
-   
-    LH154Q01_start();
-    LH154Q01_backlight(1);
+    //VS035ZSM_backlight(1);
  
     GPIOC->ODR ^= GPIO_ODR_OD13;
    
     while(1){
 
-        fill_screen(0xFF, 0, 0);
-        fill_screen(0, 0xFF, 0);
-        fill_screen(0, 0, 0xFF);
+        //fill_screen(0xFF, 0, 0);
+        //fill_screen(0, 0xFF, 0);
+        //fill_screen(0, 0, 0xFF);
 
         i = ssd2828_get_id();
         if(i == 0x2828){
             GPIOC->ODR ^= GPIO_ODR_OD13;
-            
         }
         
         delay_ms(100);
-        
-        
     }
     return 0;
 }

@@ -10,7 +10,9 @@ void ssd2828_SHUT_0(){
 }
 
 void ssd2828_gpio_init(){
-    //GPIOA already enabled
+    //enable GPIOA GPIOB
+    RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN | RCC_AHB1ENR_GPIOBEN;
+
     //set SHUT RST DC to output
     SSD2828_C_PORT->MODER |=    (0x1 << (SSD2828_SHUT*2)) | (0x1 << (SSD2828_DC*2)) | (0x1 << (SSD2828_RST*2));
     //set SHUT RST DC to push pull
@@ -21,7 +23,6 @@ void ssd2828_gpio_init(){
     SSD2828_C_PORT->ODR &=      ~(1 << SSD2828_SHUT) & ~(1 << SSD2828_DC);
     SSD2828_C_PORT->ODR |=      (1 << SSD2828_RST);
 
-    //GPIO B already enabled
     //set 1V2 3V3 as outputs
     SSD2828_V_PORT->MODER |=    (1U << (SSD2828_1V2*2)) | (1U << (SSD2828_3V3*2));
     //set to push pull

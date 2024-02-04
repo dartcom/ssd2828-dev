@@ -37,3 +37,4 @@ fp-info-cache
 software/build/*.o
 software/build/*.bin
 software/build/*.elf
+datasheets/*

@@ -25,11 +25,11 @@ void spi_init(){
     spi_gpio_init();
     //enable SPI1 in RCC
     RCC->APB2ENR |= RCC_APB2ENR_SPI1EN;
-    //set baudrate to fclk/128
+    //set baudrate to fclk/64
     SPI1->CR1 |= (0b101 << SPI_CR1_BR_Pos) | SPI_CR1_MSTR;
     //set CPOL CPHA to 0
     SPI1->CR1 &= ~SPI_CR1_CPHA & ~SPI_CR1_CPOL;
-    //set 8-bit data drame
+    //set 8-bit data frame
     SPI1->CR1 &= ~SPI_CR1_DFF;
     //set MSB  first
     SPI1->CR1 &= ~SPI_CR1_LSBFIRST;
