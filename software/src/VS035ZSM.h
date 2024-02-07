@@ -23,8 +23,8 @@
 #define VS035ZSM_HSYNC      2U
 #define VS035ZSM_VSYNC      2U
 
-#define VS035ZSM_HFP        30U
-#define VS035ZSM_HBP        30U
+#define VS035ZSM_HFP        60U
+#define VS035ZSM_HBP        60U
 #define VS035ZSM_VFP        10U
 #define VS035ZSM_VBP        10U
 
