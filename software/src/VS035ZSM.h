@@ -23,10 +23,10 @@
 #define VS035ZSM_HSYNC      2U
 #define VS035ZSM_VSYNC      2U
 
-#define VS035ZSM_H_HFP      30U
-#define VS035ZSM_H_HBP      30U
-#define VS035ZSM_H_VFP      10U
-#define VS035ZSM_H_VBP      10U
+#define VS035ZSM_HFP        30U
+#define VS035ZSM_HBP        30U
+#define VS035ZSM_VFP        10U
+#define VS035ZSM_VBP        10U
 
 void VS035ZSM_SSD2828_write_cfg();
 
@@ -39,6 +39,7 @@ void VS035ZSM_init_GPIO();
 void VS035ZSM_init_BACKLIGHT();
 
 void VS035ZSM_backlight(uint8_t i);
+void VS035ZSM_vid();
 
 
 #endif

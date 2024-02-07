@@ -55,7 +55,7 @@ int main(){
     gpio_init();
     delay_init();
     spi_init();
-    delay_ms(1500);
+    delay_ms(15);
     
     
     
@@ -67,10 +67,12 @@ int main(){
     VS035ZSM_init();
     VS035ZSM_init_BACKLIGHT();
     VS035ZSM_SSD2828_write_cfg();
+    ssd2828_set_LP();
     VS035ZSM_start();
     
-    //VS035ZSM_backlight(1);
- 
+    VS035ZSM_backlight(1);
+    ssd2828_set_HS();
+    VS035ZSM_vid();
     GPIOC->ODR ^= GPIO_ODR_OD13;
    
     while(1){

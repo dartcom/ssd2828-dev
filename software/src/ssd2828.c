@@ -207,7 +207,19 @@ void ssd2828_MIPI_write_generic_long_p(uint8_t cmd, uint16_t *params, uint32_t l
     }
 }
 
+void ssd2828_set_HS(){
+    uint16_t tmp = 0;
+    ssd2828_SPI_read_reg(CFGR_REG, &tmp);
+    tmp |= (1 << CFGR_HS_POS);
+    ssd2828_SPI_write_reg(CFGR_REG, tmp);
+}
 
+void ssd2828_set_LP(){
+    uint16_t tmp = 0;
+    ssd2828_SPI_read_reg(CFGR_REG, &tmp);
+    tmp &= ~(1 << CFGR_HS_POS);
+    ssd2828_SPI_write_reg(CFGR_REG, tmp);
+}
 
 
 void ssd2828_write_cfg(){

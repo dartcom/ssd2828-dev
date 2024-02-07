@@ -4,7 +4,10 @@
         "stm32f401xc.h": "c",
         "core_cm4.h": "c",
         "cmsis_compiler.h": "c",
-        "stdint.h": "c"
+        "stdint.h": "c",
+        "vs035zsm.h": "c",
+        "ssd2828.h": "c",
+        "lh154q01.h": "c"
     },
     "cortex-debug.variableUseNaturalFormat": false
 }

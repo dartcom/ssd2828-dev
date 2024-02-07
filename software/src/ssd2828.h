@@ -263,7 +263,7 @@ struct SSD2828_LCD_PARAMS{
     #define DAR1_HPD_MSK                    0x00FF
 
 #define DAR2_REG    0xCA
-    #define DAR2_CXD_POS                    8U
+    #define DAR2_CZD_POS                    8U
     #define DAR2_CZD_MSK                    0xFF00
     #define DAR2_CPD_POS                    0U
     #define DAR2_CPD_MSK                    0x00FF
@@ -638,6 +638,9 @@ void ssd2828_MIPI_write_generic_short_p(uint8_t cmd, uint16_t param);
 
 void ssd2828_MIPI_write_generic_long_p(uint8_t cmd, uint16_t *params, uint32_t len);
 
+void ssd2828_set_HS();
+
+void ssd2828_set_LP();
 
 
 
