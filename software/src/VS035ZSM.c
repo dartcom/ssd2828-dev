@@ -4,12 +4,7 @@
 void VS035ZSM_SSD2828_write_cfg(){
     //disable the PLL
     ssd2828_SPI_write_reg(PCR_REG, 0x0000);
-    //set PLL freq to 336MHZ 
-    //ssd2828_SPI_write_reg(PLCR_REG, 0x0000 | (2U << PLCR_FR_POS) | (1U << PLCR_MS_POS) | (14U << PLCR_NS_POS));
-    //set divider for low speed to 8.4MHZ
-    //ssd2828_SPI_write_reg(CCR_REG, 0x0000 | (4U << CCR_LPD_POS));
-
-
+ 
 	//set PLL freq to 912MHZ 
     ssd2828_SPI_write_reg(PLCR_REG, 0x0000 | (3U << PLCR_FR_POS) | (1U << PLCR_MS_POS) | (38U << PLCR_NS_POS));
     //set divider for low speed to 8.4MHZ
@@ -46,21 +41,6 @@ void VS035ZSM_SSD2828_write_cfg(){
     ssd2828_SPI_write_reg(CFGR_REG, 0x0000 | (1U << CFGR_EOT_POS) | (1U << CFGR_DCS_POS) | (1U << CFGR_HS_POS));
     //set virtual channel 0x0000
     ssd2828_SPI_write_reg(VCR_REG, 0x0000);
-
-	//set MIPI delay timings
-	//set HS Zero Delay and HS Prepare Delay
-	//ssd2828_SPI_write_reg(DAR1_REG, 0x0000 | (12U << DAR1_HZD_POS) | (2U << DAR1_HPD_POS));
-	//set CLK Zero Delay and CLK Prepare Delay
-	//ssd2828_SPI_write_reg(DAR2_REG, 0x0000 | (25U << DAR2_CZD_POS) | (2U << DAR2_CPD_POS));
-	//set CLK Pre Delay and CLK Post Delay
-	//ssd2828_SPI_write_reg(DAR3_REG, 0x0000 | (4U << DAR3_CPED_POS) | (24U << DAR3_CPTD_POS));
-	//set CLK Trail Delay and HS Trail Delay
-	//ssd2828_SPI_write_reg(DAR4_REG, 0x0000 | (6U << DAR4_CTD_POS) | (8U << DAR4_HTD_POS));
-	//set TA Go Delay and TA GET Delay
-	//ssd2828_SPI_write_reg(DAR6_REG, 0x0000 | (4U << DAR6_TGO_POS) | (5U << DAR6_TGET_POS));
-
-
-
 
 
 	//set MIPI delay timings
