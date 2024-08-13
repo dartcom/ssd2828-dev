@@ -5,6 +5,7 @@ void VS035ZSM_SSD2828_write_cfg(){
     //disable the PLL
     ssd2828_SPI_write_reg(PCR_REG, 0x0000);
  
+
 	//set PLL freq to 912MHZ 
     ssd2828_SPI_write_reg(PLCR_REG, 0x0000 | (3U << PLCR_FR_POS) | (1U << PLCR_MS_POS) | (38U << PLCR_NS_POS));
     //set divider for low speed to 8.4MHZ
@@ -25,12 +26,18 @@ void VS035ZSM_SSD2828_write_cfg(){
 	ssd2828_SPI_write_reg(VICR2_REG, 0x0000 | (VS035ZSM_VBP << VICR2_VBP_POS) | (VS035ZSM_HBP << VICR2_HBP_POS) );
     //set VFP HFP
 	ssd2828_SPI_write_reg(VICR3_REG, 0x0000 | (VS035ZSM_VFP << VICR3_VFP_POS) | (VS035ZSM_HFP << VICR3_HFP_POS) );
-    //set horizontal active
+
+	
+	
+	//set horizontal active
 	ssd2828_SPI_write_reg(VICR4_REG, 0x0000 | (VS035ZSM_H_ACTIVE << VICR4_HACT_POS) );
     //set vertical active
 	ssd2828_SPI_write_reg(VICR5_REG, 0x0000 | (VS035ZSM_V_ACTIVE << VICR5_VACT_POS) );
-    //set color depth 24bit and burst mode
-	ssd2828_SPI_write_reg(VICR6_REG, 0x0000 | (3U << VICR6_VPF_POS) | (2U << VICR6_VM_POS) );
+	
+	
+	
+    //set color depth 24bit
+	ssd2828_SPI_write_reg(VICR6_REG, 0x0000 | (3U << VICR6_VPF_POS) | (2U << VICR6_VM_POS) | (0U << VICR6_PCLK_P_POS));
 
     //set lanes number to 4
     ssd2828_SPI_write_reg(LCFR_REG, 0x0003);
@@ -55,6 +62,15 @@ void VS035ZSM_SSD2828_write_cfg(){
 	//set TA Go Delay and TA GET Delay
 	ssd2828_SPI_write_reg(DAR6_REG, 0x0000 | (5U << DAR6_TGO_POS) | (6U << DAR6_TGET_POS));
 
+	//adding pulldown resistors for the data pins
+	ssd2828_SPI_write_reg(PUCR2_REG, 0x0000 | (1U << PUCR2_DH_PULL_POS) | (1U << PUCR2_DM_PULL_POS) | (1U << PUCR2_DL_PULL_POS));
+
+
+	//set packer number in blanking period
+	//ssd2828_SPI_write_reg(TR_REG, 0x0000 | (20U << TR_PNB_POS) );
+
+	//prepare for video
+	ssd2828_SPI_write_reg(CFGR_REG, 0x0000 | (1U << CFGR_HS_POS) | (1U << CFGR_CKE_POS) | (1U << CFGR_DCS_POS) | (1U << CFGR_EOT_POS) | (1U << CFGR_ECD_POS));
 }
 
 void VS035ZSM_init(){
@@ -82,9 +98,6 @@ void VS035ZSM_init(){
 }
 
 void VS035ZSM_start(){
-	
-    
-
 	//HSSRAM parameter
 	/*
 	for(uint8_t i = 0; i < MIPI_TOTAL_PORT; i++){
@@ -329,6 +342,7 @@ void VS035ZSM_start(){
 	}*/
 	ssd2828_MIPI_write_DCS_short_p(0x35, 0x00);
 
+	//set address mode DCS commands
 	/*
 	for(uint8_t i = 0; i < MIPI_TOTAL_PORT; i++){
 		short_dcs.mipi_port = dcs_port_seq[i];
@@ -342,17 +356,14 @@ void VS035ZSM_start(){
 
 	/*
 	for(uint8_t i = 0; i < MIPI_TOTAL_PORT; i++){
-		long_dcs.mipi_port = dcs_port_seq[i];
-		long_dcs.data_type = DATALONG_GEN_WRITE;
-		long_dcs.word_count = 0x0005;
-		long_dcs.pData = &dsc_long3[0];
+		long_dcs.mipi_port = dcs_port_seq[i];VS035ZSM_PARTIAL_RES_X
 		mipi_packet_send_long(&long_dcs);
 	}*/
 	uint8_t dsc_long3[4] = {0x00, 0x00, 0x06, 0x40};
 	//ssd2828_MIPI_write_generic_long_p(0x2B, dsc_long3, 4);
 
 
-	
+
 	//Backlight should be turned on here but looks like it still works if its enabled earlier
 
 	// Sleep Out
@@ -403,6 +414,10 @@ void VS035ZSM_start(){
 	
 	// Turn ON backlight
 	// CHICAGO_PANEL_V33_ON();
+
+	
+	
+	
 	
 }
 
@@ -468,10 +483,6 @@ void VS035ZSM_init_BACKLIGHT(){
 
 }
 
-void VS035ZSM_vid(){
-	ssd2828_SPI_write_reg(CFGR_REG, 0x0000 | (1U << CFGR_HS_POS) | (1U << CFGR_CKE_POS) | (1U << CFGR_VEN_POS) | (1U << CFGR_DCS_POS) | (1U << CFGR_EOT_POS) | (1U << CFGR_ECD_POS));
-	ssd2828_SPI_write_reg(TMR_REG, 0x0000 | (1U << TMR_VBIST_EN_POS) | (1U << TMR_VBIST_SRT_POS)); 
-}
 
 void VS035ZSM_backlight(uint8_t i){
     if(i == 1){
@@ -481,4 +492,74 @@ void VS035ZSM_backlight(uint8_t i){
         //disable backlight PWM
         TIM1->CR1 &= ~TIM_CR1_CEN;
     } 
+}
+
+void VS035ZSM_set_partial(){
+
+	//set VSYNC HSYNC period
+    ssd2828_SPI_write_reg(VICR1_REG, 0x0000 | (VS035ZSM_PARTIAL_VSYNC << VICR1_VSA_POS) | (VS035ZSM_PARTIAL_VSYNC << VICR1_HSA_POS) );
+	//set horizontal active
+	ssd2828_SPI_write_reg(VICR4_REG, 0x0000 | (VS035ZSM_PARTIAL_HACT << VICR4_HACT_POS) );
+    //set vertical active
+	ssd2828_SPI_write_reg(VICR5_REG, 0x0000 | (VS035ZSM_PARTIAL_VACT << VICR5_VACT_POS) );
+    //set VBP HBP
+	ssd2828_SPI_write_reg(VICR2_REG, 0x0000 | (VS035ZSM_PARTIAL_VBP << VICR2_VBP_POS) | (VS035ZSM_PARTIAL_HBP << VICR2_HBP_POS) );
+    //set VFP HFP
+	ssd2828_SPI_write_reg(VICR3_REG, 0x0000 | (VS035ZSM_PARTIAL_VFP << VICR3_VFP_POS) | (VS035ZSM_PARTIAL_HFP << VICR3_HFP_POS) );
+
+	//disable the PLL
+    //ssd2828_SPI_write_reg(PCR_REG, 0x0000);
+ 
+
+	//set PLL freq to 528MHZ 
+    ssd2828_SPI_write_reg(PLCR_REG, 0x0000 | (3U << PLCR_FR_POS) | (1U << PLCR_MS_POS) | (22U << PLCR_NS_POS));
+    //set divider for low speed to 8.2MHZ
+    ssd2828_SPI_write_reg(CCR_REG, 0x0000 | (8U << CCR_LPD_POS));
+
+
+    //enable the PLL
+    //ssd2828_SPI_write_reg(PCR_REG, 0x0000 | (1U << PCR_PEN_POS));
+    //wait 2 ms to stabilize
+    //delay_ms(5);
+
+
+
+
+	//set partial display mode
+	//set collumn address
+	uint8_t dcs_collumn_addr_params[4] = { 	((VS035ZSM_H_ACTIVE/2) - (VS035ZSM_PARTIAL_RES_X/2)) >> 8U,
+											((VS035ZSM_H_ACTIVE/2) - (VS035ZSM_PARTIAL_RES_X/2)) & 0xFF, 	
+											((VS035ZSM_H_ACTIVE/2) + (VS035ZSM_PARTIAL_RES_X/2)-1) >> 8U,
+											((VS035ZSM_H_ACTIVE/2) + (VS035ZSM_PARTIAL_RES_X/2)-1) & 0xFF
+	};
+	ssd2828_MIPI_write_DCS_long_p(DCS_set_column_address, dcs_collumn_addr_params, 4);
+	//set page address
+	uint8_t dcs_page_addr_params[4] = { ((VS035ZSM_V_ACTIVE/2) - (VS035ZSM_PARTIAL_RES_Y/2)) >> 8U,
+										((VS035ZSM_V_ACTIVE/2) - (VS035ZSM_PARTIAL_RES_Y/2)) & 0xFF, 	
+										((VS035ZSM_V_ACTIVE/2) + (VS035ZSM_PARTIAL_RES_Y/2)) >> 8U,
+										((VS035ZSM_V_ACTIVE/2) + (VS035ZSM_PARTIAL_RES_Y/2)) & 0xFF
+	};
+	ssd2828_MIPI_write_DCS_long_p(DCS_set_page_address, dcs_page_addr_params, 4);
+
+
+
+	
+	//set partial collumns
+	uint8_t dcs_partial_collumns_params[4] = {	((VS035ZSM_H_ACTIVE/2) - (VS035ZSM_PARTIAL_RES_X/2)) >> 8U,
+												((VS035ZSM_H_ACTIVE/2) - (VS035ZSM_PARTIAL_RES_X/2)) & 0xFF, 	
+												((VS035ZSM_H_ACTIVE/2) + (VS035ZSM_PARTIAL_RES_X/2)) >> 8U,
+												((VS035ZSM_H_ACTIVE/2) + (VS035ZSM_PARTIAL_RES_X/2)) & 0xFF
+	};
+	ssd2828_MIPI_write_DCS_long_p(DCS_set_partial_columns, dcs_partial_collumns_params, 4);
+	//set partial rows
+	uint8_t dcs_partial_rows_params[4] = {	((VS035ZSM_V_ACTIVE/2) - (VS035ZSM_PARTIAL_RES_Y/2)) >> 8U,
+											((VS035ZSM_V_ACTIVE/2) - (VS035ZSM_PARTIAL_RES_Y/2)) & 0xFF, 	
+											((VS035ZSM_V_ACTIVE/2) + (VS035ZSM_PARTIAL_RES_Y/2)-1) >> 8U,
+											((VS035ZSM_V_ACTIVE/2) + (VS035ZSM_PARTIAL_RES_Y/2)-1) & 0xFF
+	};
+	ssd2828_MIPI_write_DCS_long_p(DCS_set_partial_rows, dcs_partial_rows_params, 4);
+	//enter partial display mode
+	ssd2828_MIPI_write_DCS_short_np(DCS_enter_partial_mode);
+
+
 }

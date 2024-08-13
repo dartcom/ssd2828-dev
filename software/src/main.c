@@ -50,12 +50,12 @@ void fill_screen(uint8_t r, uint8_t g, uint8_t b){
 }
 
 int main(){
-    uint16_t i = 0;
+    uint16_t i,j = 0;
     SystemClock_Config();
     gpio_init();
     delay_init();
     spi_init();
-    delay_ms(15);
+    delay_ms(550);
     
     
     
@@ -72,21 +72,20 @@ int main(){
     
     VS035ZSM_backlight(1);
     ssd2828_set_HS();
-    VS035ZSM_vid();
+    ssd2828_BIST_ON();
+    //VS035ZSM_set_partial(); 
+    ssd2828_VID_ON();
     GPIOC->ODR ^= GPIO_ODR_OD13;
    
     while(1){
-
-        //fill_screen(0xFF, 0, 0);
-        //fill_screen(0, 0xFF, 0);
-        //fill_screen(0, 0, 0xFF);
-
         i = ssd2828_get_id();
         if(i == 0x2828){
             GPIOC->ODR ^= GPIO_ODR_OD13;
         }
         
+
         delay_ms(100);
+       
     }
     return 0;
 }

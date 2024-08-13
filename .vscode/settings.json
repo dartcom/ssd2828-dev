@@ -7,7 +7,9 @@
         "stdint.h": "c",
         "vs035zsm.h": "c",
         "ssd2828.h": "c",
-        "lh154q01.h": "c"
+        "lh154q01.h": "c",
+        "spi.h": "c",
+        "stddef.h": "c"
     },
     "cortex-debug.variableUseNaturalFormat": false
 }

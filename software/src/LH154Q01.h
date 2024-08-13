@@ -9,6 +9,8 @@
 #include "../libs/spi.h"
 #include "ssd2828.h"
 
+#include "DCS.h"
+
 #define LH154Q01_V_PORT     GPIOB
 #define LH154Q01_3V0        12U
 #define LH154Q01_1V8        1U

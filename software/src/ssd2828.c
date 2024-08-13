@@ -117,7 +117,7 @@ void ssd2828_MIPI_write_DCS_short_np(uint8_t cmd){
     ssd2828_SPI_write_data(cmd);
 }
 
-void ssd2828_MIPI_write_DCS_short_p(uint8_t cmd, uint16_t param){
+void ssd2828_MIPI_write_DCS_short_p(uint8_t cmd, uint8_t param){
     uint16_t tmp = 0;
     ssd2828_SPI_read_reg(CFGR_REG, &tmp);
     tmp |= (1 << CFGR_DCS_POS);
@@ -135,7 +135,7 @@ void ssd2828_MIPI_write_DCS_short_p(uint8_t cmd, uint16_t param){
     ssd2828_SPI_write_data(param);
 }
 
-void ssd2828_MIPI_write_DCS_long_p(uint8_t cmd, uint16_t *params, uint32_t len){
+void ssd2828_MIPI_write_DCS_long_p(uint8_t cmd, uint8_t *params, uint32_t len){
     uint16_t tmp = 0;
     ssd2828_SPI_read_reg(CFGR_REG, &tmp);
     tmp |= (1 << CFGR_DCS_POS) | (1 << CFGR_LPE_POS);
@@ -170,7 +170,7 @@ void ssd2828_MIPI_write_generic_short_np(uint8_t cmd){
     ssd2828_SPI_write_data(cmd);
 }
 
-void ssd2828_MIPI_write_generic_short_p(uint8_t cmd, uint16_t param){
+void ssd2828_MIPI_write_generic_short_p(uint8_t cmd, uint8_t param){
     uint16_t tmp = 0;
     ssd2828_SPI_read_reg(CFGR_REG, &tmp);
     tmp &= ~(1 << CFGR_LPE_POS) & ~(1 << CFGR_DCS_POS);
@@ -187,7 +187,7 @@ void ssd2828_MIPI_write_generic_short_p(uint8_t cmd, uint16_t param){
     ssd2828_SPI_write_data(param);
 }
 
-void ssd2828_MIPI_write_generic_long_p(uint8_t cmd, uint16_t *params, uint32_t len){
+void ssd2828_MIPI_write_generic_long_p(uint8_t cmd, uint8_t *params, uint32_t len){
     uint16_t tmp = 0;
     ssd2828_SPI_read_reg(CFGR_REG, &tmp);
     tmp |= (1 << CFGR_LPE_POS);
@@ -222,78 +222,31 @@ void ssd2828_set_LP(){
 }
 
 
-void ssd2828_write_cfg(){
-    //set lanes number to 1
-    ssd2828_SPI_write_reg(LCFR_REG, 0x0000);
-    //disable the PLL
-    ssd2828_SPI_write_reg(PCR_REG, 0x0000);
-    //set PLL freq to 336MHZ 
-    ssd2828_SPI_write_reg(PLCR_REG, 0x0000|(1U << PLCR_FR_POS) | (1U << PLCR_MS_POS) | (14U << PLCR_NS_POS));
-    //enable the PLL
-    ssd2828_SPI_write_reg(PCR_REG, 0x0000|(1U << PCR_PEN_POS));
-    //wait 2 ms to stabilize
-    delay_ms(2);
-    //set divider for low speed to 8MHZ
-    ssd2828_SPI_write_reg(CCR_REG, 0x0000|(4U << CCR_LPD_POS));
-    //set MIPI packet format
-    //enable EOT DCS HS
-    //disable Read Video
-    ssd2828_SPI_write_reg(CFGR_REG, 0x0000 | (1U << CFGR_EOT_POS) | (1U << CFGR_DCS_POS)  | (1U << CFGR_HS_POS) );
-    //set virtual channel 0x0000
-    ssd2828_SPI_write_reg(VCR_REG, 0x0000);
+
+void ssd2828_BIST_ON(){
+    uint16_t tmp;
+    ssd2828_SPI_read_reg(TMR_REG, &tmp);
+    tmp |= (1 << TMR_VBIST_EN_POS) | (1 << TMR_VBIST_SRT_POS);
+    ssd2828_SPI_write_reg(TMR_REG, tmp);   
 }
 
-void ssd2828_en_BIST(){
-    // SSD2828 BIST mode
-    ssd2828_SPI_write_reg(TMR_REG, 0x0000|(1 << TMR_VBIST_EN_POS) | (1 << TMR_VBIST_SRT_POS));
-    
+void ssd2828_BIST_OFF(){
+    uint16_t tmp;
+    ssd2828_SPI_read_reg(TMR_REG, &tmp);
+    tmp &= ~(1 << TMR_VBIST_EN_POS) & ~(1 << TMR_VBIST_SRT_POS);
+    ssd2828_SPI_write_reg(TMR_REG, tmp); 
 }
 
-void ssd2828_write_lcd_params(struct SSD2828_LCD_PARAMS params){
-    ssd2828_SPI_write_reg(VICR1_REG, (params.VSPW << 8) | params.HSPW);
-    ssd2828_SPI_write_reg(VICR2_REG, (params.VBPD << 8) | params.HBPD);
-    ssd2828_SPI_write_reg(VICR3_REG, (params.VFPD << 8) | params.HFPD);
-    ssd2828_SPI_write_reg(VICR4_REG, params.XSIZE);
-    ssd2828_SPI_write_reg(VICR5_REG, params.YSIZE);
-    ssd2828_SPI_write_reg(LCFR_REG, (uint16_t)(params.lanes -1));
+void ssd2828_VID_ON(){
+    uint16_t tmp;
+    ssd2828_SPI_read_reg(CFGR_REG, &tmp);
+    tmp |= (1U << CFGR_VEN_POS);
+    ssd2828_SPI_write_reg(CFGR_REG, tmp); 
 }
 
-
-void SSD_WritePacket(const uint8_t *PData){
-    uint8_t i;
-    uint16_t number;
-    uint8_t temp;
-    
-    number = (uint16_t)(*PData);
-    PData++;
-    ssd2828_SPI_write_reg(PSCR1_REG, number&0x0FFF);
-    ssd2828_SPI_write_reg(PSCR2_REG, 0x0000);
-    //set max packet size
-    ssd2828_SPI_write_reg(PSCR3_REG, 0x0400);
-    ssd2828_SPI_write_cmd(PDR_REG);//0xBF
-    for(i=0; i<number; i++)
-    {
-        temp = *PData;
-        PData++;
-        ssd2828_SPI_write_data(temp);
-    }
-}
-
-void lcd_init(){
-    const uint8_t SLPOUT[]={1,0x11};
-    const uint8_t DISPOFF[]={1,0x28};
-    const uint8_t INV[]={1,0x21};
-    const uint8_t DISPON[]={1,0x29};
-    const uint8_t RGB[]={2,0x3A ,0x77};//24bit
-    const uint8_t FLIP[]={2,0x36 ,0x08};//COLOR
-    
-   
-
-    SSD_WritePacket(SLPOUT);
-    delay_ms(100);
-    SSD_WritePacket(RGB);
-    delay_ms(10);
-    SSD_WritePacket(DISPON);
-    delay_ms(10);
-
+void ssd2828_VID_OFF(){
+    uint16_t tmp;
+    ssd2828_SPI_read_reg(CFGR_REG, &tmp);
+    tmp &= ~(1U << CFGR_VEN_POS);
+    ssd2828_SPI_write_reg(CFGR_REG, tmp); 
 }
